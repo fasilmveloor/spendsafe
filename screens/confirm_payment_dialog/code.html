@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Confirm Payment Dialog - SpendSafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark antialiased">
+<!-- Main Background Content (Dimmed/Context) -->
+<div aria-hidden="true" class="relative flex h-screen w-full flex-col overflow-hidden bg-background-light dark:bg-background-dark pointer-events-none select-none">
+<!-- Header -->
+<div class="flex items-center justify-between px-4 py-3 bg-white dark:bg-[#1a2230] border-b border-[#dbdfe6] dark:border-gray-800">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#111318] dark:text-white">arrow_back_ios_new</span>
+<span class="text-lg font-bold text-[#111318] dark:text-white">Due Detail</span>
+</div>
+<span class="material-symbols-outlined text-[#111318] dark:text-white">more_vert</span>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-4 opacity-40 blur-[1px]">
+<!-- Profile Card -->
+<div class="flex flex-col items-center justify-center py-8">
+<div class="relative mb-4">
+<img alt="Profile picture of Alice smiling" class="h-24 w-24 rounded-full object-cover border-4 border-white dark:border-[#1a2230] shadow-md" data-alt="Profile picture of Alice smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1obaQXlVkdfcZ_NO8-I3RbsAx2wVRkeIk0tjuBWbb4guMA6wfzlyJebi4WvxjzJLLYNoVIrQdl-4tiCEp7zSmxXApBrDyG4Cbas7HqxMWIKVQIEYo0EH_JxuSE8K1YFQj91LZgplrfaCqW-xsgAk8h1AZph5d_n0uSWB4SiemqHqv6D--8tKxXvkqR2E5ibMCDOU6Imf0xuEKs2J2wSntPm5WsNQRFjuDbHyDIvduh9reUvRWx8pEDdBV1GaD03-mYcQ11AA_738"/>
+<div class="absolute bottom-1 right-1 h-5 w-5 rounded-full bg-green-500 border-2 border-white dark:border-[#1a2230]"></div>
+</div>
+<h2 class="text-2xl font-bold text-[#111318] dark:text-white">Alice Freeman</h2>
+<p class="text-sm text-[#616f89] dark:text-[#9ca3af] mt-1">You owe <span class="text-red-500 font-medium">₹1,500</span></p>
+</div>
+<!-- Action Buttons Row -->
+<div class="grid grid-cols-2 gap-3 mb-6">
+<button class="flex items-center justify-center gap-2 h-12 rounded-xl bg-white dark:bg-[#1a2230] border border-[#dbdfe6] dark:border-gray-700 text-[#111318] dark:text-white font-medium">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+                    Remind
+                </button>
+<button class="flex items-center justify-center gap-2 h-12 rounded-xl bg-primary text-white font-medium shadow-lg shadow-blue-500/20">
+<span class="material-symbols-outlined text-[20px] fill-1">check</span>
+                    Settle Up
+                </button>
+</div>
+<!-- Expense List -->
+<div class="flex flex-col gap-3">
+<p class="text-xs font-bold uppercase tracking-wider text-[#616f89] dark:text-[#9ca3af] px-1">Recent Activity</p>
+<div class="flex items-center gap-4 bg-white dark:bg-[#1a2230] p-4 rounded-xl border border-[#dbdfe6] dark:border-gray-800">
+<div class="h-10 w-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div class="flex-1">
+<p class="text-[#111318] dark:text-white font-bold text-sm">Dinner at Mario's</p>
+<p class="text-xs text-[#616f89] dark:text-[#9ca3af]">Yesterday • Dining</p>
+</div>
+<div class="text-right">
+<p class="text-red-500 font-bold text-sm">You owe</p>
+<p class="text-[#111318] dark:text-white font-bold text-sm">₹1,500</p>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-[#1a2230] p-4 rounded-xl border border-[#dbdfe6] dark:border-gray-800">
+<div class="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">local_taxi</span>
+</div>
+<div class="flex-1">
+<p class="text-[#111318] dark:text-white font-bold text-sm">Uber to Airport</p>
+<p class="text-xs text-[#616f89] dark:text-[#9ca3af]">Oct 24 • Transport</p>
+</div>
+<div class="text-right">
+<p class="text-green-500 font-bold text-sm">Paid</p>
+<p class="text-[#111318] dark:text-white font-bold text-sm">₹450</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Dialog Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+<!-- Dialog Container -->
+<div class="relative w-full max-w-[340px] overflow-hidden rounded-2xl bg-white dark:bg-[#1e232e] shadow-2xl ring-1 ring-black/5 transform transition-all scale-100 opacity-100">
+<!-- Content Area -->
+<div class="flex flex-col items-center p-6 pb-2 text-center">
+<!-- Icon Header -->
+<div class="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20">
+<span class="material-symbols-outlined text-[32px] text-primary" style="font-variation-settings: 'FILL' 1;">
+                        payments
+                    </span>
+</div>
+<!-- Title -->
+<h2 class="mb-2 text-xl font-bold leading-tight text-[#111318] dark:text-white">
+                    Confirm Payment?
+                </h2>
+<!-- Message -->
+<p class="text-[15px] leading-relaxed text-[#616f89] dark:text-[#9ca3af]">
+                    This will create an expense for <span class="font-bold text-[#111318] dark:text-white">₹1,500</span> under <span class="font-bold text-[#111318] dark:text-white">Dining</span> and mark this due item as Settled.
+                </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-3 p-6 pt-6">
+<!-- Primary Action -->
+<button class="flex w-full items-center justify-center rounded-xl bg-primary h-12 px-6 text-[15px] font-bold text-white shadow-md shadow-blue-500/20 transition-transform active:scale-[0.98] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-[#1e232e]">
+                    Confirm Paid
+                </button>
+<!-- Secondary Action -->
+<button class="flex w-full items-center justify-center rounded-xl bg-transparent h-12 px-6 text-[15px] font-bold text-[#616f89] dark:text-[#9ca3af] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors focus:outline-none">
+                    Cancel
+                </button>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Fund - SpendSafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a73e8","primary-dark": "#1557b0",
+                        "background-light": "#ffffff",
+                        "surface-light": "#ffffff",
+                        "border-light": "#e2e8f0",
+                        "text-main-light": "#111827","text-sec-light": "#6b7280","chip-active": "#1f2937",},
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {min-height: 100vh; 
+            min-height: 100dvh;
+        }.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-gray-50 font-display text-text-main-light antialiased">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-white shadow-xl pb-[90px]">
+<header class="sticky top-0 z-20 flex items-center justify-between px-4 py-4 bg-white border-b border-gray-100">
+<button class="flex size-10 items-center justify-center -ml-2 rounded-full hover:bg-gray-100 transition-colors text-black">
+<span aria-label="Go back" class="material-symbols-outlined font-bold" style="font-variation-settings: 'wght' 600;">chevron_left</span>
+</button>
+<h2 class="text-[17px] font-bold text-center flex-1 pr-8">Create Fund</h2>
+</header>
+<main class="flex-1 px-5 pt-6 pb-6">
+<div class="mb-6">
+<label class="block mb-2">
+<span class="text-sm font-semibold text-gray-900">Fund name <span class="text-gray-400 font-normal">(Required)</span></span>
+</label>
+<input class="w-full rounded-lg border border-gray-300 bg-white h-12 px-3 text-[15px] placeholder:text-gray-400 focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm" placeholder='e.g. "New Phone", "Emergency Fund", "Japan Trip"' type="text"/>
+</div>
+<div class="mb-6">
+<label class="block mb-2">
+<span class="text-sm font-semibold text-gray-900">Description <span class="text-gray-400 font-normal">(Optional)</span></span>
+</label>
+<textarea class="w-full resize-none rounded-lg border border-gray-300 bg-white h-24 p-3 text-[15px] placeholder:text-gray-400 focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm" placeholder="What is this fund for?"></textarea>
+</div>
+<div class="mb-6">
+<label class="block mb-3">
+<span class="text-sm font-semibold text-gray-900">Fund Type <span class="text-gray-400 font-normal">(Required)</span></span>
+</label>
+<div class="flex flex-wrap gap-2 mb-2">
+<button class="flex items-center px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 font-medium text-xs hover:bg-gray-50 transition-all">
+                    Emergency
+                </button>
+<button class="flex items-center px-4 py-2 rounded-full bg-chip-active text-white font-medium text-xs shadow-sm transition-transform active:scale-95">
+                    Short-term
+                </button>
+<button class="flex items-center px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 font-medium text-xs hover:bg-gray-50 transition-all">
+                    Recurring
+                </button>
+<button class="flex items-center px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 font-medium text-xs hover:bg-gray-50 transition-all">
+                    Long-term
+                </button>
+<button class="flex items-center px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 font-medium text-xs hover:bg-gray-50 transition-all">
+                    Custom
+                </button>
+</div>
+<p class="text-gray-500 text-xs mt-2">
+                Fund type helps tailor reminders and contribution suggestions. It does not restrict spending.
+            </p>
+</div>
+<div class="mb-6">
+<label class="block mb-2">
+<span class="text-sm font-semibold text-gray-900">Target amount (₹) <span class="text-gray-400 font-normal">(Required)</span></span>
+</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-medium">₹</span>
+<input class="w-full rounded-lg border border-gray-300 bg-white h-11 pl-7 pr-4 text-[15px] font-medium placeholder:text-gray-400 focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm" placeholder="50,000" type="number"/>
+</div>
+</div>
+<div class="mb-6">
+<label class="block mb-2">
+<span class="text-sm font-semibold text-gray-900">Target date <span class="text-gray-400 font-normal">(Optional)</span></span>
+</label>
+<div class="relative">
+<input class="w-full rounded-lg border border-gray-300 bg-white h-11 px-3 text-[15px] text-gray-900 placeholder:text-gray-400 focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm appearance-none" onblur="(this.type='text')" onfocus="(this.type='date')" placeholder="mm/dd/yyyy" type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xl">calendar_month</span>
+</div>
+<p class="text-gray-500 text-xs mt-2">
+                Optional. Useful for goal-based funds like trips or purchases.
+            </p>
+</div>
+<div class="mb-8">
+<label class="block mb-2">
+<span class="text-sm font-semibold text-gray-900">Where is this money kept? <span class="text-gray-400 font-normal">(Optional)</span></span>
+</label>
+<div class="relative">
+<select class="w-full rounded-lg border border-gray-300 bg-white h-11 px-3 pr-10 text-[15px] text-gray-900 focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm appearance-none cursor-pointer invalid:text-gray-400">
+<option disabled="" selected="" value="">e.g. Savings Account, FD, Mutual Fund...</option>
+<option value="savings">Savings Account</option>
+<option value="fd">Fixed Deposit</option>
+<option value="mf">Mutual Fund</option>
+<option value="gold">Gold</option>
+<option value="cash">Cash</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">expand_more</span>
+</div>
+<p class="text-gray-500 text-xs mt-2">
+                For reference only. SpendSafe does not track account balances.
+            </p>
+</div>
+<div class="border-t border-dotted border-gray-300 w-full mb-6"></div>
+<div class="mb-8">
+<div class="flex items-center justify-between mb-4">
+<span class="text-[13px] font-medium text-gray-500">Suggested monthly</span>
+<span class="text-sm font-bold text-gray-900">₹4,166</span>
+</div>
+<div class="flex flex-col gap-2 mb-4">
+<div class="flex items-center justify-between">
+<label class="text-[13px] font-medium text-gray-700">Your monthly contribution</label>
+<button class="text-[11px] font-semibold text-primary hover:text-primary-dark transition-colors">Reset</button>
+</div>
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-900 text-[15px] font-medium">₹</span>
+<input class="w-full rounded-lg bg-white border border-primary p-2.5 pl-7 text-[15px] font-semibold text-gray-900 focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none ring-1 ring-primary" type="number" value="4166"/>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 rounded-lg bg-gray-100 border border-transparent">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5 fill-current" style="font-variation-settings: 'FILL' 1;">info</span>
+<p class="text-[11px] text-gray-600 leading-relaxed">
+                    Setting aside <strong class="text-gray-900">₹4,166</strong> monthly reduces your safe-to-spend amount by <strong class="text-gray-900">about ₹140</strong> per day.
+                </p>
+</div>
+</div>
+<div class="flex flex-col gap-3 mt-4">
+<button class="w-full h-12 rounded-lg bg-primary hover:bg-primary-dark text-white font-semibold text-[15px] shadow-sm transition-all active:scale-[0.99]">
+                Create Fund
+            </button>
+<button class="w-full h-10 rounded-lg text-gray-500 font-medium text-[15px] hover:text-gray-800 transition-colors">
+                Cancel
+            </button>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-gray-100 px-2 pb-5 pt-2 z-50 flex items-center justify-between text-xs font-medium text-gray-400">
+<button class="flex flex-col items-center justify-center w-full gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center w-full gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">category</span>
+<span class="text-[10px]">Categories</span>
+</button>
+<div class="relative -top-5 w-full flex justify-center pointer-events-none">
+<button class="pointer-events-auto flex items-center justify-center size-14 rounded-full bg-primary text-white shadow-lg shadow-blue-200 hover:bg-primary-dark transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center justify-center w-full gap-1 text-primary">
+<span class="material-symbols-outlined text-[24px] fill-current" style="font-variation-settings: 'FILL' 1;">savings</span>
+<span class="text-[10px]">Funds</span>
+</button>
+<button class="flex flex-col items-center justify-center w-full gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">trending_up</span>
+<span class="text-[10px]">Insights</span>
+</button>
+</nav>
+</div>
+
+</body></html>

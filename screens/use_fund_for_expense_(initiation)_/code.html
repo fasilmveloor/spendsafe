@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Use Fund for Expense - SpendSafe</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white overflow-hidden">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-hidden">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between shrink-0 z-10">
+<!-- Left Icon (Optional, used as spacer or back if needed, keeping simple as per plan) -->
+<div class="flex size-12 shrink-0 items-center justify-center text-[#111418] dark:text-white opacity-0 pointer-events-none">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">
+                Use Fund
+            </h2>
+<button class="flex w-16 items-center justify-end group">
+<p class="text-[#617589] dark:text-gray-400 group-hover:text-primary text-base font-bold leading-normal tracking-[0.015em] shrink-0 transition-colors">
+                    Cancel
+                </p>
+</button>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto overflow-x-hidden pb-32">
+<!-- Fund Context Card -->
+<div class="p-4">
+<div class="relative bg-cover bg-center flex flex-col items-stretch justify-end rounded-2xl pt-[140px] overflow-hidden shadow-sm" data-alt="Abstract calming blue gradient background representing financial stability" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuD66vsQCp_OB2NE6s1TNpVdRJ2BG4MQxJn61CdNXqRtVit1XBd-BsdWOFDmXmBCfiSPVrwqW7x2f1d8PxgHic9GH8KstLOxb5NfUfsDX8V7QDSQlueEQ9aLA-o21WmXA7wOZJkpJgRF1vtqW03Fa28K3KzqBhqq9r_VUXouYApNUUEHqH5HVUIaYprutakCIvn4zwV6E0mi2s9zaSSWztceG8ESCyLUclWqIXrIVZCeR8nWdfBZCf9_YQynG9S6rheLijn8tYfZTQs");'>
+<div class="flex w-full items-end justify-between gap-4 p-5 z-10">
+<div class="flex max-w-[440px] flex-1 flex-col gap-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-white/80" style="font-size: 20px;">savings</span>
+<p class="text-white/90 text-sm font-medium leading-normal uppercase tracking-wider">Vacation Fund</p>
+</div>
+<p class="text-white tracking-tight text-3xl font-bold leading-tight">₹50,000</p>
+<p class="text-white/80 text-sm font-medium leading-normal">Current Balance</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Headline -->
+<div class="pt-4 pb-2">
+<h3 class="text-[#111418] dark:text-white tracking-tight text-2xl font-bold leading-tight px-4 text-center">
+                    How much to withdraw?
+                </h3>
+</div>
+<!-- Amount Input Field -->
+<div class="flex w-full flex-col items-center gap-4 px-4 py-3">
+<label class="flex flex-col w-full max-w-[480px]">
+<div class="relative flex items-center justify-center">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-[#111418] dark:text-white text-2xl font-bold">₹</span>
+<input autofocus="" class="form-input flex w-full min-w-0 resize-none rounded-xl text-[#111418] dark:text-white dark:bg-[#1a2632] focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe0e6] dark:border-gray-700 bg-white h-20 placeholder:text-[#9ca3af] pl-10 pr-4 text-center text-4xl font-bold leading-normal transition-all" placeholder="0" type="number" value=""/>
+</div>
+</label>
+</div>
+<!-- Impact/Consequence Preview -->
+<div class="px-4 py-2">
+<div class="bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20 rounded-xl p-4 flex flex-col gap-3">
+<div class="flex justify-between items-center text-sm">
+<span class="text-[#617589] dark:text-gray-400">Current Balance</span>
+<span class="font-bold text-[#111418] dark:text-white">₹50,000</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-[#617589] dark:text-gray-400">Withdrawal</span>
+<span class="font-bold text-red-500">- ₹0</span>
+</div>
+<div class="h-px w-full bg-[#dbe0e6] dark:bg-gray-700"></div>
+<div class="flex justify-between items-center">
+<span class="text-[#111418] dark:text-gray-300 font-medium">New Balance</span>
+<span class="font-bold text-primary text-lg">₹50,000</span>
+</div>
+</div>
+</div>
+<!-- Alternative Action Link -->
+<div class="pt-6 pb-4">
+<button class="w-full group flex flex-col items-center justify-center gap-1">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium leading-normal px-4 text-center">
+                        Or link to an existing transaction
+                    </p>
+<span class="text-primary text-sm font-bold group-hover:underline">Select Transaction</span>
+</button>
+</div>
+</div>
+<!-- Sticky Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-background-light dark:bg-background-dark p-4 border-t border-[#dbe0e6] dark:border-gray-800 z-20 pb-8"> <!-- Added pb-8 for iOS home indicator area -->
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] w-full shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+<span class="truncate">Continue</span>
+</button>
+</div>
+</div>
+</body></html>

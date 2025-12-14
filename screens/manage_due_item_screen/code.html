@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manage Due Item - SpendSafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "sans": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white antialiased">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-white dark:bg-[#101622] shadow-sm">
+<div class="sticky top-0 z-10 flex items-center bg-white dark:bg-[#101622] p-4 pb-2 justify-between border-b border-gray-100 dark:border-gray-800">
+<button class="text-[#111318] dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Manage Due Item</h2>
+</div>
+<main class="flex-1 flex flex-col p-4 gap-6">
+<div class="flex w-full">
+<div class="flex h-12 flex-1 items-center justify-center rounded-xl bg-[#f0f2f4] dark:bg-gray-800 p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-[#1e293b] has-[:checked]:shadow-sm has-[:checked]:text-primary transition-all duration-200 text-[#616f89] dark:text-gray-400 text-sm font-semibold leading-normal">
+<span class="truncate">You owe</span>
+<input checked="" class="invisible w-0 absolute" name="due_type" type="radio" value="owe"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-[#1e293b] has-[:checked]:shadow-sm has-[:checked]:text-primary transition-all duration-200 text-[#616f89] dark:text-gray-400 text-sm font-semibold leading-normal">
+<span class="truncate">Owed to you</span>
+<input class="invisible w-0 absolute" name="due_type" type="radio" value="owed"/>
+</label>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center py-4">
+<label class="text-sm font-medium text-[#616f89] dark:text-gray-400 mb-1">Amount due</label>
+<div class="relative flex items-center justify-center w-full">
+<span class="text-4xl font-bold text-[#111318] dark:text-white mr-1">₹</span>
+<input class="form-input w-2/3 bg-transparent border-0 text-center text-5xl font-bold text-[#111318] dark:text-white placeholder:text-gray-300 dark:placeholder:text-gray-700 focus:ring-0 p-0" inputmode="numeric" placeholder="0" type="number" value=""/>
+</div>
+</div>
+<div class="flex flex-col gap-5">
+<div class="flex flex-col gap-1.5">
+<label class="text-[#111318] dark:text-white text-base font-medium leading-normal">Name</label>
+<div class="relative">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111318] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1e293b] focus:border-primary h-14 placeholder:text-[#9aa2b1] dark:placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal transition-shadow" placeholder="Person or description" value=""/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-[#111318] dark:text-white text-base font-medium leading-normal">Category</label>
+<div class="relative">
+<select class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111318] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1e293b] focus:border-primary h-14 placeholder:text-[#9aa2b1] p-[15px] text-base font-normal leading-normal appearance-none pr-10 transition-shadow">
+<option disabled="" selected="" value="">Select category</option>
+<option value="utilities">Utilities</option>
+<option value="friends">Friends &amp; Family</option>
+<option value="rent">Rent Split</option>
+<option value="office">Office Expense</option>
+<option value="other">Other</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#616f89]">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-[#111318] dark:text-white text-base font-medium leading-normal">Due Date</label>
+<div class="relative">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111318] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1e293b] focus:border-primary h-14 placeholder:text-[#9aa2b1] p-[15px] text-base font-normal leading-normal transition-shadow" placeholder="Select date" type="date"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-[#111318] dark:text-white text-base font-medium leading-normal">Notes</label>
+<textarea class="form-textarea flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111318] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1e293b] focus:border-primary min-h-[100px] placeholder:text-[#9aa2b1] dark:placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal transition-shadow" placeholder="Add optional notes"></textarea>
+</div>
+<div class="flex items-start gap-3 rounded-xl bg-primary/5 p-4 border border-primary/10">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">info</span>
+<p class="text-sm text-[#4b5563] dark:text-gray-400 font-normal leading-relaxed">
+                        This item will affect your <span class="font-medium text-primary">Available to Spend</span> only when marked as settled. You can mark it settled after payment or receipt.
+                    </p>
+</div>
+</div>
+<div class="h-8"></div>
+</main>
+<div class="sticky bottom-0 bg-white dark:bg-[#101622] p-4 border-t border-gray-100 dark:border-gray-800">
+<button class="flex w-full items-center justify-center rounded-xl bg-primary h-14 px-5 text-white text-base font-bold shadow-lg shadow-primary/30 active:scale-[0.98] transition-all hover:bg-blue-600">
+                Save Due
+            </button>
+</div>
+</div>
+
+</body></html>

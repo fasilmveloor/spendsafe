@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In - Expense Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+             font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display antialiased">
+<div class="relative flex h-full min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden transition-colors duration-300">
+<div class="flex-1 flex flex-col items-center justify-center w-full px-6 pt-12 pb-6">
+<div class="flex flex-col gap-3 mb-8 animate-fade-in">
+<div class="w-24 h-24 bg-center bg-no-repeat bg-contain rounded-2xl shadow-lg shadow-blue-500/10 dark:shadow-blue-900/20" data-alt="Minimalist abstract blue cube logo representing financial stability" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbv4N_X0Y26yORiu-KiJP_h6dfodlVXkGMbn3E9AKWPgfSNPsjoptcVa2d3DCc7dEybaQGcscHREgIJ9RlloG_1b9yhDSi2DMWeBpb6OG3IP1fttVcZuW7Qq-rMn3F-tYPVKXI2ojpJrQFG1YgdaJQnuXOiGXcfCYbwrIpw2GqjM1O-P-37JwaGRe2gomuH0HjKhZD9MqlVr95b00bq2zl679vusUjHE8jUF9SJbuyZLVTQdQpZO1kZd0zcjOqTcdLwPfW5KIwLOk");'>
+</div>
+</div>
+<div class="w-full max-w-sm text-center">
+<h1 class="text-[#111418] dark:text-white tracking-tight text-[32px] font-bold leading-tight pb-3">
+                Stay in control of your spending
+            </h1>
+<p class="text-[#637588] dark:text-gray-400 text-base font-normal leading-relaxed">
+                Sign in to sync your expenses across devices and stay on top of your budget.
+            </p>
+</div>
+</div>
+<div class="w-full px-6 pb-12 md:pb-16 flex flex-col gap-4 items-center max-w-md mx-auto">
+<div class="flex w-full justify-center">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 bg-primary hover:bg-blue-600 active:bg-blue-700 transition-all text-white gap-3 text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-blue-500/25">
+<div class="bg-white rounded-full p-1 flex items-center justify-center w-7 h-7">
+<svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+</div>
+<span class="truncate">Sign in with Google</span>
+</button>
+</div>
+<div class="flex items-center gap-2 w-full my-1 opacity-60">
+<div class="h-px bg-gray-300 dark:bg-gray-700 flex-1"></div>
+<span class="text-xs font-medium text-gray-500 uppercase">or</span>
+<div class="h-px bg-gray-300 dark:bg-gray-700 flex-1"></div>
+</div>
+<div class="flex w-full justify-center">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-4 bg-transparent hover:bg-gray-200/50 dark:hover:bg-gray-800/50 transition-colors text-[#111418] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] gap-2 group">
+<span class="truncate group-hover:underline decoration-2 underline-offset-4 decoration-primary/50">Skip for now</span>
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[20px]">arrow_forward</span>
+</button>
+</div>
+<p class="text-center text-xs text-gray-400 dark:text-gray-500 mt-4 leading-normal max-w-xs">
+            By continuing, you agree to our 
+            <a class="text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="#">Terms of Service</a> 
+            and 
+            <a class="text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="#">Privacy Policy</a>.
+        </p>
+</div>
+</div>
+
+</body></html>

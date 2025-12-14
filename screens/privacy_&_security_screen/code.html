@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Privacy &amp; Security</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a2230",
+                        "text-main": "#111318",
+                        "text-main-dark": "#ffffff",
+                        "text-sub": "#637587",
+                        "text-sub-dark": "#9ba6b6",
+                        "border-light": "#e5e7eb",
+                        "border-dark": "#2a3441",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex flex-col items-center">
+<!-- Mobile Container -->
+<div class="w-full max-w-md bg-background-light dark:bg-background-dark h-full min-h-screen flex flex-col relative">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-4 py-3 flex items-center justify-between border-b border-transparent dark:border-border-dark/30">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-primary dark:text-primary">
+<span class="material-symbols-outlined text-[28px]">chevron_left</span>
+</button>
+<h1 class="text-text-main dark:text-text-main-dark text-lg font-bold leading-tight flex-1 text-center pr-10">Privacy &amp; Security</h1>
+</header>
+<!-- Content Scroll Area -->
+<main class="flex-1 px-4 pt-2 pb-10 space-y-6">
+<!-- Section: Account Security -->
+<section>
+<h3 class="text-text-sub dark:text-text-sub-dark text-xs font-bold tracking-wider uppercase px-4 pb-2 pt-4">Account Security</h3>
+<div class="bg-card-light dark:bg-card-dark rounded-xl overflow-hidden shadow-sm border border-border-light dark:border-border-dark">
+<!-- List Item: Change Password -->
+<div class="group flex items-center gap-4 px-4 min-h-[56px] justify-between cursor-pointer hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors border-b border-border-light dark:border-border-dark last:border-0">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</div>
+<p class="text-text-main dark:text-text-main-dark text-base font-normal truncate">Change Password</p>
+</div>
+<span class="material-symbols-outlined text-text-sub dark:text-text-sub-dark text-[20px]">chevron_right</span>
+</div>
+<!-- List Item: Two-Factor Auth (Toggle) -->
+<div class="group flex items-center gap-4 px-4 min-h-[56px] justify-between border-b border-border-light dark:border-border-dark last:border-0">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]">security</span>
+</div>
+<p class="text-text-main dark:text-text-main-dark text-base font-normal truncate">Two-Factor Authentication</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[30px] w-[50px] cursor-pointer items-center rounded-full border-none bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary transition-colors duration-200">
+<div class="h-[26px] w-[26px] rounded-full bg-white shadow-sm transform transition-transform duration-200"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- List Item: Connected Devices -->
+<div class="group flex items-center gap-4 px-4 min-h-[56px] justify-between cursor-pointer hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]">devices</span>
+</div>
+<p class="text-text-main dark:text-text-main-dark text-base font-normal truncate">Connected Devices</p>
+</div>
+<span class="material-symbols-outlined text-text-sub dark:text-text-sub-dark text-[20px]">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Section: App Permissions -->
+<section>
+<h3 class="text-text-sub dark:text-text-sub-dark text-xs font-bold tracking-wider uppercase px-4 pb-2 pt-2">App Permissions</h3>
+<div class="bg-card-light dark:bg-card-dark rounded-xl overflow-hidden shadow-sm border border-border-light dark:border-border-dark">
+<!-- List Item: Notifications -->
+<div class="group flex items-center gap-4 px-4 min-h-[56px] justify-between cursor-pointer hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors border-b border-border-light dark:border-border-dark last:border-0">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+</div>
+<p class="text-text-main dark:text-text-main-dark text-base font-normal truncate">Notification Settings</p>
+</div>
+<span class="material-symbols-outlined text-text-sub dark:text-text-sub-dark text-[20px]">chevron_right</span>
+</div>
+<!-- List Item: Location Access (Toggle) -->
+<div class="group flex items-center gap-4 px-4 min-h-[56px] justify-between">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+</div>
+<p class="text-text-main dark:text-text-main-dark text-base font-normal truncate">Location Access</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[30px] w-[50px] cursor-pointer items-center rounded-full border-none bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary transition-colors duration-200">
+<div class="h-[26px] w-[26px] rounded-full bg-white shadow-sm transform transition-transform duration-200"></div>
+<input class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+</div>
+<p class="px-4 pt-2 text-xs text-text-sub dark:text-text-sub-dark leading-relaxed">
+                    Location access is used for fraud detection when signing in from new locations.
+                </p>
+</section>
+<!-- Section: Data Privacy -->
+<section>
+<h3 class="text-text-sub dark:text-text-sub-dark text-xs font-bold tracking-wider uppercase px-4 pb-2 pt-2">Data Privacy</h3>
+<div class="bg-card-light dark:bg-card-dark rounded-xl overflow-hidden shadow-sm border border-border-light dark:border-border-dark">
+<!-- List Item: Data Export -->
+<div class="group flex items-center gap-4 px-4 min-h-[56px] justify-between cursor-pointer hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors border-b border-border-light dark:border-border-dark last:border-0">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]">cloud_download</span>
+</div>
+<p class="text-text-main dark:text-text-main-dark text-base font-normal truncate">Data Export</p>
+</div>
+<span class="material-symbols-outlined text-text-sub dark:text-text-sub-dark text-[20px]">chevron_right</span>
+</div>
+<!-- List Item: Delete Account -->
+<div class="group flex items-center gap-4 px-4 min-h-[56px] justify-between cursor-pointer hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 shrink-0">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</div>
+<p class="text-red-600 dark:text-red-400 text-base font-normal truncate">Delete My Account</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Links -->
+<div class="pt-4 pb-8 flex flex-col items-center justify-center space-y-4">
+<a class="text-primary text-sm font-medium hover:underline flex items-center gap-1" href="#">
+                    Read Privacy Policy
+                    <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+<p class="text-xs text-text-sub dark:text-text-sub-dark text-center">
+                    SpendSafe v2.4.0 (Build 184)
+                </p>
+</div>
+</main>
+</div>
+</body></html>

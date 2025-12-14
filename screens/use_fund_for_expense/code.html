@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SpendSafe - Use Fund</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1877F2",
+                        "background-light": "#e5e7eb","background-dark": "#0f172a","surface-light": "#ffffff",
+                        "surface-dark": "#1e293b","subtle-light": "#f3f4f6",
+                        "subtle-dark": "#334155",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        .fund-gradient {
+            background: linear-gradient(135deg, #456d7c 0%, #2b4550 100%);
+        }
+        .dark .fund-gradient {
+             background: linear-gradient(135deg, #2d4a55 0%, #1a2a32 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-sans min-h-screen flex items-center justify-center p-4 sm:p-6 transition-colors duration-200">
+<main class="w-full max-w-[400px] bg-surface-light dark:bg-surface-dark rounded-3xl shadow-2xl overflow-hidden relative flex flex-col max-h-[90vh]">
+<header class="flex justify-between items-center px-6 pt-6 pb-2 shrink-0">
+<div class="w-12"></div>
+<h1 class="text-lg font-bold text-gray-900 dark:text-white tracking-tight">Use Fund</h1>
+<button class="text-gray-500 dark:text-gray-400 font-medium text-sm hover:text-gray-700 dark:hover:text-gray-200 transition-colors w-12 text-right">
+                Cancel
+            </button>
+</header>
+<div class="overflow-y-auto px-6 py-4 flex-grow space-y-6">
+<div class="fund-gradient rounded-2xl p-5 text-white shadow-lg relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full -mr-10 -mt-10 blur-2xl"></div>
+<div class="relative z-10 flex flex-col h-32 justify-between">
+<div class="flex items-center space-x-2 opacity-90">
+<span class="material-icons-round text-lg">savings</span>
+<span class="text-xs font-bold tracking-wider uppercase">Vacation Fund</span>
+</div>
+<div>
+<div class="text-3xl font-bold tracking-tight">₹50,000</div>
+<div class="text-xs text-white/70 font-medium mt-1">Current Balance</div>
+</div>
+</div>
+</div>
+<section class="space-y-4">
+<h2 class="text-center text-lg font-semibold text-gray-900 dark:text-white">
+                    How much to withdraw?
+                </h2>
+<div class="relative">
+<div class="flex items-center border-2 border-primary rounded-xl px-4 py-3 bg-white dark:bg-gray-800 shadow-sm focus-within:ring-4 focus-within:ring-blue-500/10 transition-shadow">
+<span class="text-gray-900 dark:text-white font-semibold text-xl mr-2">₹</span>
+<input class="w-full bg-transparent border-none p-0 text-3xl font-medium text-center text-gray-900 dark:text-white placeholder-gray-300 focus:ring-0" placeholder="0" type="number" value="0"/>
+<div class="flex flex-col ml-2 text-gray-400 dark:text-gray-500">
+<button class="hover:text-primary transition-colors -mb-1">
+<span class="material-icons-round text-xl leading-none">arrow_drop_up</span>
+</button>
+<button class="hover:text-primary transition-colors -mt-1">
+<span class="material-icons-round text-xl leading-none">arrow_drop_down</span>
+</button>
+</div>
+</div>
+</div>
+<p class="text-center text-xs text-gray-500 dark:text-gray-400">
+                    This will deduct money from the fund and mark it as spent.
+                </p>
+</section>
+<div class="bg-blue-50 dark:bg-slate-700/50 rounded-xl p-4 space-y-3">
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-500 dark:text-gray-400">Current Balance</span>
+<span class="font-medium text-gray-900 dark:text-white">₹50,000</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-500 dark:text-gray-400">Withdrawal</span>
+<span class="font-medium text-red-500">- ₹0</span>
+</div>
+<div class="h-px bg-gray-200 dark:bg-gray-600 w-full my-1"></div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-900 dark:text-white font-medium">New Balance</span>
+<span class="font-bold text-primary">₹50,000</span>
+</div>
+</div>
+<details class="group bg-gray-50 dark:bg-gray-800/50 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 transition-all">
+<summary class="flex justify-between items-center p-4 cursor-pointer list-none text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+<span>Expense Details</span>
+<span class="material-icons-round text-gray-400 group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-4 pt-0 space-y-4 border-t border-gray-100 dark:border-gray-700">
+<div class="mt-4">
+<label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Category <span class="text-red-500">*</span></label>
+<div class="relative">
+<select class="w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg py-2 pl-3 pr-8 text-sm text-gray-900 dark:text-white focus:ring-primary focus:border-primary">
+<option>Travel &amp; Vacation</option>
+<option>Dining Out</option>
+<option>Entertainment</option>
+<option>Shopping</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Note (Optional)</label>
+<input class="w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg py-2 px-3 text-sm text-gray-900 dark:text-white focus:ring-primary focus:border-primary placeholder-gray-400" placeholder="e.g. Flight tickets" type="text"/>
+</div>
+</div>
+</details>
+<p class="text-xs text-gray-400 dark:text-gray-500 text-center px-4">
+                This will not reduce your Available to Spend again.
+            </p>
+<div class="text-center pt-2 pb-2">
+<p class="text-sm text-gray-500 dark:text-gray-400">
+                    Or link to an existing transaction <br/>
+<a class="text-primary font-medium hover:underline mt-1 inline-block" href="#">Select Transaction</a>
+</p>
+</div>
+</div>
+<div class="p-6 pt-2 shrink-0 bg-surface-light dark:bg-surface-dark z-20">
+<button class="w-full bg-primary hover:bg-blue-600 text-white font-semibold py-3.5 px-4 rounded-xl shadow-md shadow-blue-500/20 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100">
+                Continue
+            </button>
+</div>
+</main>
+
+</body></html>

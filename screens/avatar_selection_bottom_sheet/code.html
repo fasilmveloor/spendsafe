@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Avatar Selection Bottom Sheet</title>
+<!-- Fonts and Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "surface-dark": "#1c2a38", // Slightly lighter for modal in dark mode
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white h-screen w-full overflow-hidden relative selection:bg-primary/20">
+<!-- Simulated Previous Screen Context (Blurred Background) -->
+<div aria-hidden="true" class="absolute inset-0 flex flex-col p-6 space-y-8 opacity-30 pointer-events-none filter blur-[2px]">
+<div class="h-8 w-8 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+<div class="h-10 w-2/3 bg-slate-200 dark:bg-slate-700 rounded-lg"></div>
+<div class="flex flex-col items-center pt-10">
+<div class="h-32 w-32 bg-slate-200 dark:bg-slate-700 rounded-full mb-4"></div>
+<div class="h-6 w-1/3 bg-slate-200 dark:bg-slate-700 rounded mb-2"></div>
+</div>
+</div>
+<!-- Scrim / Overlay -->
+<div class="absolute inset-0 z-40 bg-black/60 dark:bg-black/70 backdrop-blur-sm flex flex-col justify-end items-center transition-all">
+<!-- Bottom Sheet Container -->
+<!-- Using max-w-md to ensure it looks good on tablet/desktop as a modal, but full width on phone -->
+<div class="w-full max-w-lg bg-white dark:bg-surface-dark rounded-t-[32px] shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-slide-up">
+<!-- Drag Handle Area -->
+<div class="w-full flex justify-center pt-4 pb-2 cursor-grab active:cursor-grabbing touch-none">
+<div class="w-12 h-1.5 bg-slate-200 dark:bg-slate-600 rounded-full"></div>
+</div>
+<!-- Header -->
+<div class="px-6 pb-4 text-center">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Select Avatar</h2>
+</div>
+<!-- Scrollable Content -->
+<div class="overflow-y-auto px-6 pb-8">
+<!-- Grid -->
+<div class="grid grid-cols-3 sm:grid-cols-4 gap-y-8 gap-x-4 pt-4">
+<!-- Option 1: Upload Photo (Primary Action) -->
+<div class="flex flex-col items-center gap-3">
+<button class="group relative w-[72px] h-[72px] rounded-full border-2 border-dashed border-slate-300 dark:border-slate-500 bg-slate-50 dark:bg-slate-800 flex items-center justify-center transition-all hover:border-primary hover:bg-primary/5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:scale-110 transition-transform">add_a_photo</span>
+</button>
+<span class="text-xs font-semibold text-slate-600 dark:text-slate-300 text-center leading-tight">Upload<br/>photo</span>
+</div>
+<!-- Option 2: Geometric 1 (Active/Selected State) -->
+<div class="flex flex-col items-center gap-3">
+<button class="relative w-[72px] h-[72px] rounded-full p-0.5 ring-2 ring-primary ring-offset-2 dark:ring-offset-surface-dark transition-all active:scale-95 focus:outline-none">
+<img alt="Abstract avatar" class="w-full h-full rounded-full object-cover bg-slate-100" data-alt="Minimal abstract geometric sphere with blue and white gradients" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPv3YpYFZ77NC5RGE8VGFg3JCWA-3lCD7YlgL29l0dcaO6gfmQlfTb9UVK7qxjL9eG5epxx_gBVuCVKbPwTth5P65eOv3xHMeLEl246lLzR2Fq1a4NdzUciZUiRTQMhn61NEFhh5ip_hKjsfxNRD0CczCfMv6Np8DQJqrbhvwlQPzkGa59HsPAzQJ7GpLsGEit1W9HP0XHYive_hxjUjOBdpsb5JOF9Zj5rJ1rVXQodWdOkUKfWLF4rkEoe903qq6MoftVDIKLViA"/>
+<!-- Selection Checkmark Badge -->
+<div class="absolute -bottom-1 -right-1 bg-primary text-white rounded-full p-1 shadow-sm border-2 border-white dark:border-surface-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] leading-none font-bold">check</span>
+</div>
+</button>
+<span class="text-xs font-semibold text-primary text-center leading-tight">Current</span>
+</div>
+<!-- Option 3: Geometric 2 -->
+<div class="flex flex-col items-center gap-3">
+<button class="relative w-[72px] h-[72px] rounded-full transition-all hover:opacity-80 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 dark:focus:ring-offset-surface-dark">
+<img alt="Abstract liquid avatar" class="w-full h-full rounded-full object-cover bg-slate-100" data-alt="Abstract liquid oil painting pattern in neutral grey and blue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTXThcfOyp9Euk-i1gwhpdYU6qe-71UUvUedONoYNJli9U97VjDSImnvMUaMhXlum_widEz_XdG8si530K_pbwCXxG5Kn3AbeFh-Rdl4Idt8QpFjB_9m1MHDNXTYNww8gU-wfDe7uY8jE-3JYKTpBu0PcSyQhDt-qQujRMf-g_yvIx2pxOzEBdSoiFKbpG7sWBDy8Jt1gDRx7o1erNjKONkzZBktqcFu1LdZWtFgySPay645VTGQGU8Ti8cE6vtTQ6xpmrEzSyX0w"/>
+</button>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 text-center leading-tight">Abstract</span>
+</div>
+<!-- Option 4: Minimal Portrait 1 -->
+<div class="flex flex-col items-center gap-3">
+<button class="relative w-[72px] h-[72px] rounded-full transition-all hover:opacity-80 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 dark:focus:ring-offset-surface-dark">
+<img alt="Portrait avatar" class="w-full h-full rounded-full object-cover grayscale opacity-90 hover:grayscale-0 transition-all bg-slate-100" data-alt="Minimal silhouette portrait of a person against a plain background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO2KlT1iIykfqSsKc9Fz_YvwkmCCuf5CQPzxl50NKL9Ws90C1ExDsOEclBJxEVLg7dAA-hTae8sGw4KsM1A_3yqJ2f6BNuiRMfe5F5Xo5t8hQQsUFVAXiH2CJSwk5Riv9T4Gx7auin-zo2V2v7gMM6v9Zm1FL_dNMC5VdVj20LMRC9NkhYHumiiNwdFqkUXJ4sb5qUwORmbLCuZz8t1oJnNA1aNPpEgbPa6e1nNx4U0YpHQdkvkfMFWYL3OwYos8qVJ-dO_BoxHaM"/>
+</button>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 text-center leading-tight">Portrait 1</span>
+</div>
+<!-- Option 5: Minimal Cube -->
+<div class="flex flex-col items-center gap-3">
+<button class="relative w-[72px] h-[72px] rounded-full transition-all hover:opacity-80 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 dark:focus:ring-offset-surface-dark">
+<img alt="Cube avatar" class="w-full h-full rounded-full object-cover bg-slate-100" data-alt="White 3D cube geometric shape on light background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYUuOIngvMfiXnw22ROWrMPwpVO54TJhlvh8hLmWYT4YVp9VAJamjQrLbEJc_0sSDwlTDJsUr7vvfuW8m5Sth1xHZ6dN3CAxqHe2uXmsQb5S6cothbe8BnTfM4DLyK9a7T9u7XFG-bMmnU6IMaomuGMgToir0MZofpJQRWDgm2gHvfmnbqB4pKywNss8DjhUxhI2QkYq87v0eudJp-cwkueiF8T07p_i2nFXth8mJpEdB3HFjK9pR_6sz_XwmA0LFZTL0yoMDib0g"/>
+</button>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 text-center leading-tight">Geometry</span>
+</div>
+<!-- Option 6: Nature Texture -->
+<div class="flex flex-col items-center gap-3">
+<button class="relative w-[72px] h-[72px] rounded-full transition-all hover:opacity-80 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 dark:focus:ring-offset-surface-dark">
+<img alt="Marble avatar" class="w-full h-full rounded-full object-cover bg-slate-100" data-alt="Minimalist white marble texture abstract pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNR6pN00JiWrw1NIaUZFvSuj8VADAMZCHakFDtVLaeoYalZ2ApJ6MmeypGq8uwJNtYdEsdUXdkl-ktEup-sQKuIC-cQCH7rCeEboOgiirOeuPcz9NDlq5dpS8xEm1xLVNrHQv1WzvfAyCfdHOGvOC72WWm4ZwXl74mzQKcNs7yJSN6CwqM3RbbmRoELvzbViEmPxAEaw9fIFBcNk1sJz2B5cvf5e-zPqSVMD-os2tGwu7INZsk4o-ut7EZAfytJA_zbB487aCOINU"/>
+</button>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 text-center leading-tight">Marble</span>
+</div>
+<!-- Option 7: Gradient -->
+<div class="flex flex-col items-center gap-3">
+<button class="relative w-[72px] h-[72px] rounded-full transition-all hover:opacity-80 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 dark:focus:ring-offset-surface-dark">
+<div class="w-full h-full rounded-full bg-gradient-to-br from-slate-200 to-slate-400 dark:from-slate-700 dark:to-slate-900" data-alt="Simple linear gradient from light grey to dark grey"></div>
+</button>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 text-center leading-tight">Neutral</span>
+</div>
+<!-- Option 8: Gradient Blue -->
+<div class="flex flex-col items-center gap-3">
+<button class="relative w-[72px] h-[72px] rounded-full transition-all hover:opacity-80 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 dark:focus:ring-offset-surface-dark">
+<div class="w-full h-full rounded-full bg-gradient-to-tr from-[#137fec] to-[#63a4ff]" data-alt="Simple linear gradient using the primary blue color"></div>
+</button>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 text-center leading-tight">Primary</span>
+</div>
+</div>
+</div>
+<!-- Footer / Cancel -->
+<div class="border-t border-slate-100 dark:border-slate-700/50 p-4 bg-white dark:bg-surface-dark">
+<button class="w-full py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-700/30 text-base font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700">
+                    Cancel
+                </button>
+</div>
+</div>
+</div>
+</body></html>

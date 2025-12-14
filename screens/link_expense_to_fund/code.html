@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Link Expense to Fund</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden antialiased selection:bg-primary/20 selection:text-primary">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-20 flex items-center justify-between bg-white/90 dark:bg-[#101922]/90 backdrop-blur-md px-4 py-3 border-b border-slate-200/60 dark:border-slate-800">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full active:bg-slate-100 dark:active:bg-slate-800 transition-colors cursor-pointer text-[#111418] dark:text-white">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10">Link to Emergency Fund</h2>
+</header>
+<main class="flex-1 flex flex-col gap-6 p-4 max-w-md mx-auto w-full">
+<!-- Context Card: Fund Status -->
+<section>
+<div class="relative overflow-hidden rounded-2xl bg-white dark:bg-[#1C2632] p-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-slate-100 dark:border-slate-800">
+<!-- Decorative background element -->
+<div class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/5 dark:bg-primary/10 blur-2xl"></div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-[#111418] dark:text-white">Emergency Fund</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Rainy day savings</p>
+</div>
+</div>
+<div class="rounded-full bg-slate-100 dark:bg-slate-700 px-2.5 py-1 text-xs font-bold text-slate-600 dark:text-slate-300">
+                            Safe
+                        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-end justify-between">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Balance Impact</span>
+</div>
+<div class="flex items-center gap-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 p-3">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wide font-bold">Current</span>
+<span class="text-lg font-bold text-[#111418] dark:text-white">₹50,000</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600">arrow_right_alt</span>
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wide font-bold">After</span>
+<span class="text-lg font-bold text-primary">₹49,250</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Toggle: Recent vs New -->
+<section>
+<div class="flex p-1 bg-slate-200/60 dark:bg-slate-800 rounded-xl relative">
+<label class="flex-1 cursor-pointer relative z-10">
+<input class="peer sr-only" name="expense_mode" type="radio" value="recent"/>
+<div class="flex items-center justify-center py-2.5 rounded-lg text-sm font-semibold text-slate-500 transition-all duration-200 peer-checked:bg-white dark:peer-checked:bg-[#1C2632] peer-checked:text-[#111418] dark:peer-checked:text-white peer-checked:shadow-sm">
+                        Link Recent
+                    </div>
+</label>
+<label class="flex-1 cursor-pointer relative z-10">
+<input checked="" class="peer sr-only" name="expense_mode" type="radio" value="new"/>
+<div class="flex items-center justify-center py-2.5 rounded-lg text-sm font-semibold text-slate-500 transition-all duration-200 peer-checked:bg-white dark:peer-checked:bg-[#1C2632] peer-checked:text-[#111418] dark:peer-checked:text-white peer-checked:shadow-sm">
+                        New Expense
+                    </div>
+</label>
+</div>
+</section>
+<!-- New Expense Form -->
+<section class="flex flex-col gap-5">
+<!-- Amount Input -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-500 dark:text-slate-400 ml-1">Amount to withdraw</label>
+<div class="group relative flex w-full items-center rounded-2xl bg-white dark:bg-[#1C2632] border border-slate-200 dark:border-slate-800 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all px-4 py-4 shadow-sm">
+<span class="text-3xl font-bold text-slate-400 dark:text-slate-500 mr-2">₹</span>
+<input class="h-12 w-full flex-1 bg-transparent text-4xl font-extrabold text-[#111418] dark:text-white placeholder:text-slate-300 focus:outline-none focus:ring-0 border-none p-0" placeholder="0" type="number" value="750"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-slate-100 dark:bg-slate-700 p-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm text-slate-500" style="font-size: 16px;">close</span>
+</div>
+</div>
+</div>
+<!-- Details Group -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-500 dark:text-slate-400 ml-1">Transaction Details</label>
+<div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1C2632] shadow-sm">
+<!-- Category Select -->
+<div class="relative flex items-center justify-between p-4 border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-300">
+<span class="material-symbols-outlined">prescriptions</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-medium text-slate-500">Category</span>
+<span class="text-base font-semibold text-[#111418] dark:text-white">Medical</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400">expand_more</span>
+<select class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+<option selected="" value="medical">Medical</option>
+<option value="transport">Transport</option>
+<option value="groceries">Groceries</option>
+</select>
+</div>
+<!-- Date Picker -->
+<div class="relative flex items-center justify-between p-4 border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-300">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-medium text-slate-500">Date</span>
+<span class="text-base font-semibold text-[#111418] dark:text-white">Today, 24 Oct</span>
+</div>
+</div>
+<input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" type="date"/>
+<span class="material-symbols-outlined text-slate-400">edit_calendar</span>
+</div>
+<!-- Note Input -->
+<div class="flex items-start gap-3 p-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined">edit_note</span>
+</div>
+<div class="flex-1 pt-1">
+<textarea class="w-full resize-none border-none bg-transparent p-0 text-base font-normal text-[#111418] placeholder:text-slate-400 focus:ring-0 dark:text-white leading-relaxed" placeholder="Add a note (e.g. Dentist appointment)..." rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Spacer for scroll -->
+<div class="h-20"></div>
+</main>
+<!-- Bottom Action Area -->
+<footer class="fixed bottom-0 left-0 right-0 z-20 bg-white/90 dark:bg-[#101922]/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 p-4 pb-8">
+<div class="mx-auto max-w-md flex flex-col gap-4">
+<!-- Consequence Statement -->
+<div class="flex gap-2 items-start justify-center px-4">
+<span class="material-symbols-outlined text-slate-400 text-lg mt-0.5">info</span>
+<p class="text-sm text-slate-600 dark:text-slate-400 text-center leading-tight">
+<span class="font-bold text-[#111418] dark:text-white">₹750</span> will be deducted from your <span class="font-bold text-[#111418] dark:text-white">Emergency Fund</span>.
+                </p>
+</div>
+<button class="flex w-full items-center justify-center rounded-xl bg-primary h-14 px-6 text-base font-bold text-white shadow-lg shadow-primary/25 transition-transform active:scale-[0.98] hover:bg-blue-600">
+                Confirm Link
+            </button>
+<button class="w-full text-center text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-[#111418] dark:hover:text-white transition-colors">
+                Cancel
+            </button>
+</div>
+</footer>
+</body></html>

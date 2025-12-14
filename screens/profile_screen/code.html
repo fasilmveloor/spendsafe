@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SpendSafe Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&amp;family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#135bec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              "display": ["Public Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-[#111318] dark:text-white overflow-x-hidden">
+<div class="relative flex flex-col min-h-screen w-full max-w-md mx-auto bg-white dark:bg-[#101622] shadow-2xl overflow-hidden">
+<div class="sticky top-0 z-10 flex items-center bg-white dark:bg-[#101622] p-4 pb-2 justify-between border-b border-slate-100 dark:border-slate-800">
+<button class="text-[#111318] dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+</button>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Profile</h2>
+</div>
+<div class="flex-1 overflow-y-auto">
+<div class="flex p-6 pb-2 @container">
+<div class="flex w-full flex-col gap-6 items-center">
+<div class="flex gap-4 flex-col items-center">
+<div class="relative group cursor-pointer">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-32 border-4 border-slate-50 dark:border-slate-800 shadow-sm" data-alt="Portrait of user Jane Doe smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCyWbvY-YP5OtvPFdFK9IfcHNx1u5wXWqZONhIlNZwOEzkkrNXEAyjACJgvGL6ZYhjFzxSxbYqVVGESH4IMyO4a0fBAePp-Msw8cyPqBZKzfI30RAFuAMBEa-QF5QytSPhL-tVIMyZU-fzCbQzuur4pFQHfeAyfE32TKSEnqMfVQ7V4BAKrn-OOcfMbxFJmEC9-CqP4Cu_8jSetZb-VQ_in4747YppWR9TMOH25GtoCkBimnCHb_9thSj1icLE9kVAGvN_obx6tuSU");'>
+</div>
+<div class="absolute bottom-1 right-1 bg-white dark:bg-slate-700 p-2 rounded-full shadow-md border border-slate-100 dark:border-slate-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary dark:text-blue-400" style="font-size: 18px;">edit</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center">
+<p class="text-[#111318] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] text-center">Jane Doe</p>
+<p class="text-[#616f89] dark:text-slate-400 text-base font-normal leading-normal text-center">jane.doe@spend-safe.com</p>
+</div>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-6 bg-slate-100 dark:bg-slate-800 text-[#111318] dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-sm font-bold leading-normal tracking-[0.015em] w-auto">
+<span class="truncate">Edit profile</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col mt-6">
+<div class="group flex items-center gap-4 bg-white dark:bg-[#101622] px-6 min-h-14 justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-t border-slate-50 dark:border-slate-800/50">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-500/10 shrink-0 size-10">
+<span class="material-symbols-outlined" style="font-size: 22px;">settings</span>
+</div>
+<p class="text-[#111318] dark:text-white text-base font-medium leading-normal flex-1 truncate">Settings</p>
+</div>
+<div class="shrink-0 text-slate-300 dark:text-slate-600">
+<span class="material-symbols-outlined" style="font-size: 24px;">chevron_right</span>
+</div>
+</div>
+<div class="group flex items-center gap-4 bg-white dark:bg-[#101622] px-6 min-h-14 justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-500/10 shrink-0 size-10">
+<span class="material-symbols-outlined" style="font-size: 22px;">database</span>
+</div>
+<p class="text-[#111318] dark:text-white text-base font-medium leading-normal flex-1 truncate">Data &amp; Backup</p>
+</div>
+<div class="shrink-0 text-slate-300 dark:text-slate-600">
+<span class="material-symbols-outlined" style="font-size: 24px;">chevron_right</span>
+</div>
+</div>
+<div class="group flex items-center gap-4 bg-white dark:bg-[#101622] px-6 min-h-14 justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-500/10 shrink-0 size-10">
+<span class="material-symbols-outlined" style="font-size: 22px;">lock</span>
+</div>
+<p class="text-[#111318] dark:text-white text-base font-medium leading-normal flex-1 truncate">Privacy &amp; Security</p>
+</div>
+<div class="shrink-0 text-slate-300 dark:text-slate-600">
+<span class="material-symbols-outlined" style="font-size: 24px;">chevron_right</span>
+</div>
+</div>
+<div class="group flex items-center gap-4 bg-white dark:bg-[#101622] px-6 min-h-14 justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-500/10 shrink-0 size-10">
+<span class="material-symbols-outlined" style="font-size: 22px;">help</span>
+</div>
+<p class="text-[#111318] dark:text-white text-base font-medium leading-normal flex-1 truncate">Help &amp; Support</p>
+</div>
+<div class="shrink-0 text-slate-300 dark:text-slate-600">
+<span class="material-symbols-outlined" style="font-size: 24px;">chevron_right</span>
+</div>
+</div>
+</div>
+<div class="p-6 mt-4 mb-8">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#111318] dark:text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="truncate">Sign out</span>
+</button>
+<div class="flex justify-center mt-6">
+<p class="text-xs text-slate-400 dark:text-slate-500 font-medium">SpendSafe v2.4.0 (Build 3902)</p>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Fund - SpendSafe</title>
+<!-- Fonts and Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "neutral-border": "#dbe0e6",
+              "neutral-text": "#111418",
+              "neutral-subtext": "#617589",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-neutral-text dark:text-white antialiased transition-colors duration-200">
+<!-- Mobile Container -->
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-white dark:bg-background-dark shadow-xl">
+<!-- Header -->
+<div class="sticky top-0 z-20 flex items-center justify-between bg-white dark:bg-background-dark p-4 pb-2 border-b border-gray-100 dark:border-gray-800">
+<button aria-label="Go back" class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-neutral-text dark:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</button>
+<h2 class="flex-1 text-center text-lg font-bold leading-tight tracking-[-0.015em] text-neutral-text dark:text-white pr-10">
+                Edit Fund
+            </h2>
+</div>
+<!-- Scrollable Form Content -->
+<div class="flex-1 overflow-y-auto px-4 py-6 space-y-6 pb-32">
+<!-- Fund Name Input -->
+<div class="flex flex-col gap-2">
+<label class="text-neutral-text dark:text-gray-200 text-base font-medium leading-normal" for="fund-name">Fund Name</label>
+<input class="form-input w-full rounded-lg border border-neutral-border dark:border-gray-700 bg-white dark:bg-gray-800 text-neutral-text dark:text-white focus:border-primary focus:ring-1 focus:ring-primary h-14 px-4 text-base placeholder:text-neutral-subtext transition-all" id="fund-name" type="text" value="Emergency Savings"/>
+</div>
+<!-- Description Input -->
+<div class="flex flex-col gap-2">
+<label class="text-neutral-text dark:text-gray-200 text-base font-medium leading-normal" for="description">Description <span class="text-neutral-subtext font-normal">(Optional)</span></label>
+<textarea class="form-textarea w-full rounded-lg border border-neutral-border dark:border-gray-700 bg-white dark:bg-gray-800 text-neutral-text dark:text-white focus:border-primary focus:ring-1 focus:ring-primary min-h-[120px] p-4 text-base placeholder:text-neutral-subtext resize-none transition-all" id="description">General safety net for unexpected expenses like car repairs or medical bills.</textarea>
+</div>
+<!-- Target Amount & Date Row -->
+<div class="flex gap-4">
+<div class="flex flex-col gap-2 flex-1 min-w-0">
+<label class="text-neutral-text dark:text-gray-200 text-base font-medium leading-normal truncate" for="target-amount">Target Amount (₹)</label>
+<input class="form-input w-full rounded-lg border border-neutral-border dark:border-gray-700 bg-white dark:bg-gray-800 text-neutral-text dark:text-white focus:border-primary focus:ring-1 focus:ring-primary h-14 px-4 text-base placeholder:text-neutral-subtext transition-all" id="target-amount" type="number" value="300000"/>
+</div>
+<div class="flex flex-col gap-2 flex-1 min-w-0">
+<label class="text-neutral-text dark:text-gray-200 text-base font-medium leading-normal truncate" for="target-date">Target Date</label>
+<input class="form-input w-full rounded-lg border border-neutral-border dark:border-gray-700 bg-white dark:bg-gray-800 text-neutral-text dark:text-white focus:border-primary focus:ring-1 focus:ring-primary h-14 px-4 text-base placeholder:text-neutral-subtext transition-all" id="target-date" type="date" value="2025-12-31"/>
+</div>
+</div>
+<!-- Suggested Contribution (Calculation) -->
+<div class="flex items-center justify-between py-1 px-1">
+<p class="text-neutral-subtext dark:text-gray-400 text-sm font-medium leading-normal">Suggested Monthly Contribution</p>
+<p class="text-neutral-text dark:text-white text-sm font-bold leading-normal">₹12,500</p>
+</div>
+<!-- Divider -->
+<div class="h-px w-full bg-gray-100 dark:bg-gray-800"></div>
+<!-- User Monthly Contribution -->
+<div class="flex flex-col gap-3">
+<label class="text-neutral-text dark:text-gray-200 text-base font-medium leading-normal" for="monthly-contribution">Monthly Contribution (₹)</label>
+<div class="relative">
+<input class="form-input w-full rounded-lg border border-primary dark:border-primary bg-primary/5 dark:bg-primary/10 text-neutral-text dark:text-white focus:border-primary focus:ring-1 focus:ring-primary h-16 px-4 text-xl font-bold placeholder:text-neutral-subtext transition-all" id="monthly-contribution" type="number" value="15000"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+<span class="material-symbols-outlined text-primary">edit</span>
+</div>
+</div>
+</div>
+<!-- Impact Module (Dynamic Feedback) -->
+<div class="rounded-lg bg-background-light dark:bg-gray-800 border border-neutral-border dark:border-gray-700 p-4 flex gap-4 items-start transition-colors">
+<div class="bg-white dark:bg-gray-700 rounded-full p-2 shrink-0 shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-neutral-subtext dark:text-gray-300 text-xl">wallet</span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-neutral-text dark:text-gray-200 leading-relaxed">
+                        Setting this contribution leaves you <span class="font-bold text-neutral-text dark:text-white">₹18,200</span> available to spend this month.
+                    </p>
+<p class="text-xs text-neutral-subtext dark:text-gray-400">
+                        Based on your total income and other fund commitments.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Actions -->
+<div class="absolute bottom-0 left-0 right-0 bg-white/90 dark:bg-background-dark/95 backdrop-blur-sm border-t border-gray-100 dark:border-gray-800 p-4 pb-8 z-30">
+<div class="flex flex-col gap-3">
+<button class="flex w-full items-center justify-center rounded-lg bg-primary h-12 px-6 text-white text-base font-bold tracking-wide hover:bg-blue-600 active:scale-[0.98] transition-all shadow-md shadow-blue-500/20">
+                    Save Changes
+                </button>
+<button class="flex w-full items-center justify-center rounded-lg bg-transparent h-12 px-6 text-neutral-subtext dark:text-gray-400 text-base font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 active:scale-[0.98] transition-all">
+                    Cancel
+                </button>
+</div>
+</div>
+</div>
+</body></html>

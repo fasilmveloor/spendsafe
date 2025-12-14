@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fixed Expenses Overview</title>
+<!-- Google Fonts: Public Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1A2232", // Slightly lighter than background-dark for cards
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for cleaner look if needed */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-200">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-xl">
+<!-- Header -->
+<header class="flex items-center px-4 py-3 justify-between bg-white dark:bg-surface-dark sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800">
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center text-slate-900 dark:text-white">Fixed Expenses</h1>
+<button class="flex h-10 items-center justify-center px-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group">
+<span class="text-primary font-bold text-sm tracking-wide group-hover:opacity-80 flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">add</span>
+                    Add
+                </span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col p-4 gap-6">
+<!-- Subtitle/Description -->
+<div class="text-center px-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">
+                    Recurring commitments deducted automatically
+                </p>
+</div>
+<!-- Summary Section -->
+<div class="flex flex-col gap-2 rounded-2xl p-6 bg-white dark:bg-surface-dark shadow-sm border border-slate-100 dark:border-slate-800/50">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal uppercase tracking-wider">Total fixed expenses this month</p>
+<div class="flex items-baseline gap-1">
+<p class="text-slate-900 dark:text-white tracking-tight text-4xl font-bold leading-tight">₹ 45,200</p>
+</div>
+<div class="mt-2 flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined text-base">info</span>
+<span>Includes 5 active commitments</span>
+</div>
+</div>
+<!-- List Section -->
+<div class="flex flex-col gap-3">
+<h3 class="text-slate-900 dark:text-white text-base font-bold px-1">Upcoming Deductions</h3>
+<!-- List Item 1 -->
+<button class="flex gap-4 bg-white dark:bg-surface-dark px-4 py-4 justify-between items-center rounded-xl shadow-sm border border-slate-100 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20 shrink-0 size-12 text-primary">
+<span class="material-symbols-outlined text-[24px]">home</span>
+</div>
+<div class="flex flex-1 flex-col items-start justify-center">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight">Rent</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal leading-normal mt-1">Monthly • HDFC Savings</p>
+</div>
+</div>
+<div class="shrink-0 text-right">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-normal">₹ 25,000</p>
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-sm">lock</span>
+</div>
+</button>
+<!-- List Item 2 -->
+<button class="flex gap-4 bg-white dark:bg-surface-dark px-4 py-4 justify-between items-center rounded-xl shadow-sm border border-slate-100 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20 shrink-0 size-12 text-primary">
+<span class="material-symbols-outlined text-[24px]">directions_car</span>
+</div>
+<div class="flex flex-1 flex-col items-start justify-center">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight">Car EMI</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal leading-normal mt-1">Monthly • SBI Loan</p>
+</div>
+</div>
+<div class="shrink-0 text-right">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-normal">₹ 12,500</p>
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-sm">calendar_month</span>
+</div>
+</button>
+<!-- List Item 3 -->
+<button class="flex gap-4 bg-white dark:bg-surface-dark px-4 py-4 justify-between items-center rounded-xl shadow-sm border border-slate-100 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20 shrink-0 size-12 text-primary">
+<span class="material-symbols-outlined text-[24px]">fitness_center</span>
+</div>
+<div class="flex flex-1 flex-col items-start justify-center">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight">Gold's Gym</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal leading-normal mt-1">Quarterly • Credit Card</p>
+</div>
+</div>
+<div class="shrink-0 text-right">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-normal">₹ 7,000</p>
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-sm">calendar_month</span>
+</div>
+</button>
+<!-- List Item 4 -->
+<button class="flex gap-4 bg-white dark:bg-surface-dark px-4 py-4 justify-between items-center rounded-xl shadow-sm border border-slate-100 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20 shrink-0 size-12 text-primary">
+<span class="material-symbols-outlined text-[24px]">movie</span>
+</div>
+<div class="flex flex-1 flex-col items-start justify-center">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight">Netflix</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal leading-normal mt-1">Monthly • Debit Card</p>
+</div>
+</div>
+<div class="shrink-0 text-right">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-normal">₹ 649</p>
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-sm">lock</span>
+</div>
+</button>
+<!-- List Item 5 -->
+<button class="flex gap-4 bg-white dark:bg-surface-dark px-4 py-4 justify-between items-center rounded-xl shadow-sm border border-slate-100 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20 shrink-0 size-12 text-primary">
+<span class="material-symbols-outlined text-[24px]">shield</span>
+</div>
+<div class="flex flex-1 flex-col items-start justify-center">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight">Life Insurance</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal leading-normal mt-1">Yearly • Bank Transfer</p>
+</div>
+</div>
+<div class="shrink-0 text-right">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-normal">₹ 51</p>
+<!-- Showing the amortized amount or a small indicator could be here, sticking to simple amount as per list -->
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-sm">lock</span>
+</div>
+</button>
+</div>
+<!-- Bottom Spacer for better scroll experience -->
+<div class="h-8"></div>
+</main>
+</div>
+</body></html>

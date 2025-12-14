@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Debts &amp; Dues Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#101922",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }.no-scrollbar {
+            -ms-overflow-style: none;scrollbar-width: none;}
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden selection:bg-primary/20">
+<div class="relative flex h-full min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark pb-32">
+<div class="flex items-center px-4 py-3 justify-between sticky top-0 z-30 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md transition-colors duration-200">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 24px;">arrow_back</span>
+</button>
+<div class="flex gap-2">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 24px;">more_vert</span>
+</button>
+</div>
+</div>
+<div class="px-6 pt-1 pb-6">
+<h1 class="text-slate-900 dark:text-white text-[28px] font-bold leading-tight tracking-tight">Debts &amp; Dues</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-medium pt-1">Money to pay and receive</p>
+</div>
+<div class="grid grid-cols-2 gap-4 px-5 mb-6">
+<div class="flex flex-col justify-between rounded-2xl p-5 bg-white dark:bg-surface-dark shadow-soft dark:shadow-none border border-slate-100 dark:border-slate-700/50">
+<div class="flex flex-col gap-1">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">You Owe</span>
+<p class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">$150.00</p>
+</div>
+</div>
+<div class="flex flex-col justify-between rounded-2xl p-5 bg-white dark:bg-surface-dark shadow-soft dark:shadow-none border border-slate-100 dark:border-slate-700/50">
+<div class="flex flex-col gap-1">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Owed to You</span>
+<p class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">$75.00</p>
+</div>
+</div>
+</div>
+<div class="sticky top-[60px] z-20 bg-background-light dark:bg-background-dark pt-2 px-5 mb-4">
+<div class="flex w-full border-b border-slate-200 dark:border-slate-700">
+<button class="relative flex-1 pb-3 text-center text-primary font-bold text-base transition-colors group">
+                    You Owe
+                    <span class="absolute bottom-0 left-0 w-full h-[2px] bg-primary rounded-t-full"></span>
+</button>
+<button class="relative flex-1 pb-3 text-center text-slate-500 dark:text-slate-400 font-medium text-base hover:text-slate-700 dark:hover:text-slate-200 transition-colors">
+                    Owed to You
+                    <span class="absolute bottom-0 left-0 w-full h-[2px] bg-transparent group-hover:bg-slate-300 transition-colors rounded-t-full"></span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-3 px-5 pb-24">
+<div class="group flex items-center justify-between p-4 bg-white dark:bg-surface-dark rounded-xl border border-slate-100 dark:border-slate-700/50 shadow-sm active:scale-[0.99] transition-all duration-200 cursor-pointer hover:shadow-soft hover:border-slate-200 dark:hover:border-slate-600">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-blue-50 dark:bg-slate-800 flex items-center justify-center text-xl shrink-0">
+<span class="material-symbols-outlined text-primary dark:text-blue-400">bolt</span>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-white font-bold text-base leading-tight">Electricity Bill</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium mt-1">Due Tomorrow</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<p class="text-slate-900 dark:text-white font-bold text-base">$120.00</p>
+<div class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-200">
+                        Pending
+                    </div>
+</div>
+</div>
+<div class="group flex items-center justify-between p-4 bg-white dark:bg-surface-dark rounded-xl border border-slate-100 dark:border-slate-700/50 shadow-sm active:scale-[0.99] transition-all duration-200 cursor-pointer hover:shadow-soft hover:border-slate-200 dark:hover:border-slate-600">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-base font-bold text-slate-600 dark:text-slate-300 shrink-0">
+                        S
+                    </div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-white font-bold text-base leading-tight">Pizza with Sarah</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium mt-1">Due Oct 12</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<p class="text-slate-900 dark:text-white font-bold text-base">$30.00</p>
+<div class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-200">
+                        Pending
+                    </div>
+</div>
+</div>
+<div class="group flex items-center justify-between p-4 bg-slate-50 dark:bg-surface-dark/40 rounded-xl border border-transparent dark:border-slate-700/30 cursor-pointer">
+<div class="flex items-center gap-4 opacity-60">
+<div class="size-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xl shrink-0 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined" style="font-size: 20px;">check</span>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-700 dark:text-slate-300 font-semibold text-base leading-tight line-through decoration-slate-400">Gym Membership</p>
+<p class="text-slate-400 dark:text-slate-500 text-xs font-medium mt-1">Paid Oct 01</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1.5 opacity-60">
+<p class="text-slate-500 dark:text-slate-400 font-bold text-base line-through decoration-slate-300">$45.00</p>
+<div class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400">
+                        Settled
+                    </div>
+</div>
+</div>
+</div>
+<div class="fixed bottom-8 right-6 z-40">
+<button class="flex items-center gap-2 h-14 pl-5 pr-6 rounded-full bg-primary hover:bg-blue-600 text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 active:scale-95 transition-all duration-200 group">
+<span class="material-symbols-outlined text-[24px] group-hover:rotate-90 transition-transform duration-300">add</span>
+<span class="text-base font-bold tracking-wide">Add Due</span>
+</button>
+</div>
+</div>
+
+</body></html>

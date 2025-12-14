@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Delete Due Item Dialog</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Public Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        'ios': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom iOS-like backdrop blur support */
+        .backdrop-blur-ios {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display h-screen w-full overflow-hidden relative text-[#111318] dark:text-white">
+<!-- BACKGROUND CONTENT (Simulating the 'Due Detail' screen behind the dialog) -->
+<div aria-hidden="true" class="absolute inset-0 z-0 flex flex-col h-full w-full pointer-events-none">
+<!-- Header -->
+<header class="flex items-center justify-between px-4 py-3 bg-white dark:bg-[#101622] border-b border-gray-200 dark:border-gray-800">
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</div>
+<h1 class="text-lg font-bold">Due Detail</h1>
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">edit</span>
+</div>
+</header>
+<!-- Main Content (Blurred Context) -->
+<main class="flex-1 p-4 flex flex-col items-center gap-6 opacity-40 filter blur-[2px]">
+<div class="w-full max-w-md bg-white dark:bg-[#1e293b] rounded-2xl p-6 shadow-sm flex flex-col items-center mt-4">
+<div class="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4 text-primary">
+<span class="material-symbols-outlined text-3xl">home</span>
+</div>
+<h2 class="text-2xl font-bold mb-1">Rent Payment</h2>
+<p class="text-gray-500 dark:text-gray-400">Housing</p>
+<div class="my-6 text-4xl font-bold tracking-tight">$1,250.00</div>
+<div class="w-full h-px bg-gray-100 dark:bg-gray-700 mb-6"></div>
+<div class="w-full flex justify-between items-center mb-2">
+<span class="text-gray-500 dark:text-gray-400">Status</span>
+<span class="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-1 rounded-full text-sm font-medium">Pending</span>
+</div>
+<div class="w-full flex justify-between items-center">
+<span class="text-gray-500 dark:text-gray-400">Due Date</span>
+<span class="font-medium">Oct 24, 2023</span>
+</div>
+</div>
+</main>
+</div>
+<!-- DIALOG OVERLAY -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-black/40 backdrop-blur-ios transition-opacity"></div>
+<!-- Modal Card -->
+<div class="relative w-full max-w-[320px] bg-white dark:bg-[#1e293b] rounded-2xl shadow-ios transform transition-all overflow-hidden flex flex-col group/design-root">
+<!-- Icon Section -->
+<div class="pt-8 pb-2 flex justify-center">
+<div class="w-14 h-14 rounded-full bg-red-50 dark:bg-red-900/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600 dark:text-red-400 text-3xl">delete</span>
+</div>
+</div>
+<!-- Headline Text -->
+<h3 class="text-[#111318] dark:text-white tracking-tight text-xl font-bold leading-tight px-6 text-center pt-2">
+                Delete Due Item?
+            </h3>
+<!-- Body Text -->
+<p class="text-gray-600 dark:text-gray-300 text-[15px] font-normal leading-relaxed pb-6 pt-2 px-6 text-center">
+                This pending due item will be permanently removed. No expense or income will be created.
+            </p>
+<!-- Button Group -->
+<div class="flex flex-col gap-3 px-5 pb-6">
+<!-- Destructive Action -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-11 px-4 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors shadow-sm">
+<span class="truncate">Delete Due</span>
+</button>
+<!-- Cancel Action -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-11 px-4 bg-white dark:bg-[#1e293b] hover:bg-gray-50 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-600 text-[#111318] dark:text-white text-base font-semibold leading-normal tracking-[0.015em] transition-colors">
+<span class="truncate">Cancel</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

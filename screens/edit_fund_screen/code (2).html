@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Fund - SpendSafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2563eb","primary-hover": "#1d4ed8","background-light": "#ffffff",
+                        "background-dark": "#0f172a","surface-light": "#ffffff",
+                        "surface-dark": "#1e293b","border-light": "#e5e7eb",
+                        "border-dark": "#334155",
+                        "text-main": "#0f172a","text-muted": "#64748b","text-inverse": "#ffffff",
+                        "input-bg": "#f8fafc","chip-bg": "#f1f5f9",},
+                    fontFamily: {
+                        "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "md": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 2px 8px -2px rgba(0, 0, 0, 0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        body {
+          min-height: max(884px, 100dvh);
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background: transparent;
+            bottom: 0;
+            color: transparent;
+            cursor: pointer;
+            height: auto;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-white dark:bg-background-dark font-body text-text-main dark:text-surface-light min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
+<header class="sticky top-0 z-20 bg-white dark:bg-background-dark transition-colors duration-300">
+<div class="flex items-center justify-between px-4 py-4">
+<button aria-label="Go back" class="flex size-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors -ml-2 text-text-main dark:text-white">
+<span class="material-symbols-outlined text-[28px] font-medium">chevron_left</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight text-center flex-1">Edit Fund</h1>
+<button aria-label="Delete Fund" class="flex size-10 items-center justify-center rounded-full hover:bg-red-50 text-red-500 transition-colors -mr-2">
+<span class="material-symbols-outlined text-[24px]">delete</span>
+</button>
+</div>
+<div class="h-px w-full bg-gray-100 dark:bg-border-dark"></div>
+</header>
+<main class="flex-1 overflow-y-auto pb-40">
+<div class="flex flex-col gap-6 p-5 max-w-lg mx-auto w-full">
+<div class="flex flex-col gap-2">
+<label class="text-text-main dark:text-surface-light text-sm font-semibold" for="fundName">Fund Name</label>
+<input class="w-full rounded-2xl border border-gray-200 dark:border-border-dark bg-white dark:bg-surface-dark focus:border-primary focus:ring-1 focus:ring-primary h-[56px] px-4 text-[15px] text-text-main dark:text-white placeholder:text-gray-400 transition-all outline-none" id="fundName" type="text" value="Emergency Fund"/>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-baseline">
+<label class="text-text-main dark:text-surface-light text-sm font-semibold" for="description">Description <span class="text-text-muted font-normal text-xs ml-1">(Optional)</span></label>
+</div>
+<textarea class="w-full rounded-2xl border border-gray-200 dark:border-border-dark bg-white dark:bg-surface-dark focus:border-primary focus:ring-1 focus:ring-primary min-h-[120px] p-4 text-[15px] leading-relaxed text-text-main dark:text-white placeholder:text-gray-400 resize-none transition-all outline-none align-top" id="description">Rainy day savings for unexpected car repairs or medical bills.</textarea>
+</div>
+<div class="flex flex-col gap-3">
+<h3 class="text-text-main dark:text-surface-light text-sm font-bold">Fund Type <span class="text-red-500">*</span></h3>
+<div class="flex gap-2 flex-wrap">
+<button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary px-4 transition-all border border-primary shadow-sm shadow-blue-200 dark:shadow-none">
+<span class="material-symbols-outlined text-[18px] text-white">shield</span>
+<p class="text-white text-xs font-bold uppercase tracking-wide">Emergency</p>
+</button>
+<button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-chip-bg dark:bg-surface-dark hover:bg-gray-200 dark:hover:bg-gray-700 px-4 transition-all border border-transparent">
+<span class="material-symbols-outlined text-[18px] text-gray-500 dark:text-gray-400">hourglass_top</span>
+<p class="text-gray-600 dark:text-gray-300 text-xs font-semibold">Short-term</p>
+</button>
+<button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-chip-bg dark:bg-surface-dark hover:bg-gray-200 dark:hover:bg-gray-700 px-4 transition-all border border-transparent">
+<span class="material-symbols-outlined text-[18px] text-gray-500 dark:text-gray-400">autorenew</span>
+<p class="text-gray-600 dark:text-gray-300 text-xs font-semibold">Recurring</p>
+</button>
+<button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-chip-bg dark:bg-surface-dark hover:bg-gray-200 dark:hover:bg-gray-700 px-4 transition-all border border-transparent">
+<span class="material-symbols-outlined text-[18px] text-gray-500 dark:text-gray-400">trending_up</span>
+<p class="text-gray-600 dark:text-gray-300 text-xs font-semibold">Long-term</p>
+</button>
+<button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-chip-bg dark:bg-surface-dark hover:bg-gray-200 dark:hover:bg-gray-700 px-4 transition-all border border-transparent">
+<span class="material-symbols-outlined text-[18px] text-gray-500 dark:text-gray-400">tune</span>
+<p class="text-gray-600 dark:text-gray-300 text-xs font-semibold">Custom</p>
+</button>
+</div>
+<p class="text-xs text-text-muted dark:text-gray-500 mt-1">Fund type affects reminders and contribution suggestions.</p>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-text-main dark:text-surface-light text-sm font-semibold" for="targetAmount">Target Amount</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 font-medium text-lg">₹</span>
+<input class="w-full rounded-2xl border border-gray-200 dark:border-border-dark bg-white dark:bg-surface-dark focus:border-primary focus:ring-1 focus:ring-primary h-[56px] pl-8 pr-4 text-lg font-medium text-text-main dark:text-white placeholder:text-gray-400 transition-all outline-none" id="targetAmount" inputmode="decimal" type="number" value="5000.00"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-baseline">
+<label class="text-text-main dark:text-surface-light text-sm font-semibold" for="targetDate">Target Date</label>
+<span class="text-text-muted text-xs font-normal">(Optional)</span>
+</div>
+<div class="relative">
+<input class="w-full rounded-2xl border border-gray-200 dark:border-border-dark bg-white dark:bg-surface-dark focus:border-primary focus:ring-1 focus:ring-primary h-[56px] px-4 text-lg text-text-main dark:text-white placeholder:text-gray-400 transition-all outline-none" id="targetDate" type="date" value="2024-12-31"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">calendar_today</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-2">
+<div class="flex justify-between items-baseline">
+<label class="text-text-main dark:text-surface-light text-sm font-semibold" for="storageInstrument">Where is this money kept?</label>
+<span class="text-text-muted text-xs font-normal">(Optional)</span>
+</div>
+<div class="relative group">
+<select class="w-full rounded-2xl border border-gray-200 dark:border-border-dark bg-white dark:bg-surface-dark focus:border-primary focus:ring-1 focus:ring-primary h-[56px] pl-12 pr-10 text-lg font-normal text-text-main dark:text-white appearance-none transition-all outline-none cursor-pointer" id="storageInstrument">
+<option selected="" value="savings">Savings Account</option>
+<option value="fd">FD (Fixed Deposit)</option>
+<option value="mutual-fund">Mutual Fund</option>
+<option value="gold">Gold</option>
+<option value="cash">Cash</option>
+</select>
+<div class="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary dark:text-blue-400 text-xl">account_balance_wallet</span>
+</div>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none transition-colors">expand_more</span>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full flex items-center justify-between p-5 rounded-2xl bg-gray-50 dark:bg-surface-dark border border-transparent hover:border-blue-200 dark:hover:border-border-dark transition-all group">
+<div class="flex flex-col items-start text-left gap-0.5">
+<span class="text-text-main dark:text-surface-light font-bold text-[17px]">Adjust monthly contribution</span>
+<span class="text-gray-500 dark:text-gray-400 text-sm font-normal">Manage how much you save</span>
+</div>
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary dark:text-gray-400 text-[20px] transition-colors">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<div class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md p-4 pb-8 z-30 border-t border-gray-100 dark:border-border-dark">
+<div class="max-w-lg mx-auto flex flex-col gap-4">
+<button class="w-full h-[52px] bg-primary hover:bg-primary-hover text-white text-[16px] font-bold rounded-full transition-colors flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20">
+<span>Save Changes</span>
+</button>
+<button class="w-full h-[52px] bg-transparent hover:bg-gray-50 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400 text-[16px] font-medium rounded-full transition-colors">
+            Cancel
+        </button>
+</div>
+</div>
+
+</body></html>

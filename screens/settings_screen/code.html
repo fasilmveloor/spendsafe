@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SpendSafe Settings</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1877F2",
+                        "primary-soft": "rgba(24, 119, 242, 0.08)",
+                        "background-page": "#F0F4FA",
+                        "surface": "#FFFFFF",
+                        "text-main": "#0F172A",
+                        "text-secondary": "#64748B",
+                        "text-tertiary": "#94A3B8",
+                        "divider": "#E2E8F0",
+                        "hover-state": "#F8FAFC",
+                        "toggle-off": "#CBD5E1",
+                        "toggle-on": "#1877F2",
+                        "icon-bg": "#EFF6FF",
+                        "icon-color": "#3B82F6",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                    boxShadow: {
+                        'soft': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.01)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #1877F2;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #1877F2;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            min-height: 100vh;-webkit-overflow-scrolling: touch;
+        }.toggle-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 26px;
+        }
+        .toggle-input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #CBD5E1;transition: .3s;
+            border-radius: 34px;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+        .toggle-input:checked + .toggle-slider {
+            background-color: #1877F2;}
+        .toggle-input:checked + .toggle-slider:before {
+            transform: translateX(22px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-page font-display text-text-main antialiased selection:bg-primary/20 pb-12">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto overflow-x-hidden">
+<header class="px-6 pt-12 pb-4">
+<h1 class="text-3xl font-bold tracking-tight text-text-main">Settings</h1>
+</header>
+<div class="mt-2 px-4">
+<h3 class="text-text-secondary text-xs font-semibold uppercase tracking-wider px-3 pb-2.5 ml-1">Money Setup</h3>
+<div class="bg-surface rounded-2xl overflow-hidden shadow-soft divide-y divide-divider border border-divider/50">
+<div class="group flex items-center gap-4 px-4 py-4 hover:bg-hover-state active:bg-blue-50 transition-colors cursor-pointer">
+<div class="flex items-center justify-center rounded-xl bg-icon-bg text-icon-color shrink-0 size-10">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[15px] font-semibold text-text-main leading-none">Income</p>
+</div>
+<div class="text-text-tertiary">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</div>
+<div class="group flex items-center gap-4 px-4 py-4 hover:bg-hover-state active:bg-blue-50 transition-colors cursor-pointer">
+<div class="flex items-center justify-center rounded-xl bg-icon-bg text-icon-color shrink-0 size-10">
+<span class="material-symbols-outlined text-[22px]">credit_card</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[15px] font-semibold text-text-main leading-none">Fixed Expenses</p>
+</div>
+<div class="text-text-tertiary">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</div>
+<div class="group flex items-center gap-4 px-4 py-4 hover:bg-hover-state active:bg-blue-50 transition-colors cursor-pointer">
+<div class="flex items-center justify-center rounded-xl bg-icon-bg text-icon-color shrink-0 size-10">
+<span class="material-symbols-outlined text-[22px]">calendar_month</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[15px] font-semibold text-text-main leading-none">Month Start Day</p>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="text-text-secondary text-[15px] font-medium">1st</span>
+<div class="text-text-tertiary">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 px-4">
+<h3 class="text-text-secondary text-xs font-semibold uppercase tracking-wider px-3 pb-2.5 ml-1">Notifications</h3>
+<div class="bg-surface rounded-2xl overflow-hidden shadow-soft divide-y divide-divider border border-divider/50">
+<div class="flex items-center gap-4 px-4 py-3.5">
+<div class="flex items-center justify-center rounded-xl bg-icon-bg text-icon-color shrink-0 size-10">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[15px] font-semibold text-text-main leading-snug">Daily reminder</p>
+</div>
+<label class="toggle-wrapper">
+<input class="toggle-input" type="checkbox"/>
+<span class="toggle-slider"></span>
+</label>
+</div>
+<div class="flex items-center gap-4 px-4 py-3.5">
+<div class="flex items-center justify-center rounded-xl bg-icon-bg text-icon-color shrink-0 size-10">
+<span class="material-symbols-outlined text-[22px]">warning</span>
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<p class="text-[15px] font-semibold text-text-main leading-snug">Over-budget alerts</p>
+<p class="text-[13px] text-text-secondary mt-0.5">Advisory only</p>
+</div>
+<label class="toggle-wrapper">
+<input checked="" class="toggle-input" type="checkbox"/>
+<span class="toggle-slider"></span>
+</label>
+</div>
+</div>
+</div>
+<div class="mt-6 px-4">
+<h3 class="text-text-secondary text-xs font-semibold uppercase tracking-wider px-3 pb-2.5 ml-1">Data &amp; Backup</h3>
+<div class="bg-surface rounded-2xl overflow-hidden shadow-soft divide-y divide-divider border border-divider/50">
+<div class="flex items-center gap-4 px-4 py-3.5">
+<div class="flex items-center justify-center rounded-xl bg-icon-bg text-icon-color shrink-0 size-10">
+<span class="material-symbols-outlined text-[22px]">add_to_drive</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[15px] font-semibold text-text-main leading-snug">Google Drive sync</p>
+</div>
+<label class="toggle-wrapper">
+<input class="toggle-input" type="checkbox"/>
+<span class="toggle-slider"></span>
+</label>
+</div>
+<div class="group flex items-center gap-4 px-4 py-4 hover:bg-hover-state active:bg-blue-50 transition-colors cursor-pointer">
+<div class="flex items-center justify-center rounded-xl bg-icon-bg text-icon-color shrink-0 size-10">
+<span class="material-symbols-outlined text-[22px]">download</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[15px] font-semibold text-text-main leading-none">Export data</p>
+</div>
+<div class="text-text-tertiary">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 px-4">
+<h3 class="text-text-secondary text-xs font-semibold uppercase tracking-wider px-3 pb-2.5 ml-1">Privacy &amp; Security</h3>
+<div class="bg-surface rounded-2xl overflow-hidden shadow-soft divide-y divide-divider border border-divider/50">
+<div class="flex items-center gap-4 px-4 py-3.5">
+<div class="flex items-center justify-center rounded-xl bg-icon-bg text-icon-color shrink-0 size-10">
+<span class="material-symbols-outlined text-[22px]">lock</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[15px] font-semibold text-text-main leading-snug">App lock</p>
+</div>
+<label class="toggle-wrapper">
+<input checked="" class="toggle-input" type="checkbox"/>
+<span class="toggle-slider"></span>
+</label>
+</div>
+<div class="group flex items-center gap-4 px-4 py-4 hover:bg-hover-state active:bg-blue-50 transition-colors cursor-pointer">
+<div class="flex items-center justify-center rounded-xl bg-icon-bg text-icon-color shrink-0 size-10">
+<span class="material-symbols-outlined text-[22px]">shield_person</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[15px] font-semibold text-text-main leading-none">Data permissions</p>
+</div>
+<div class="text-text-tertiary">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 px-4 mb-8">
+<h3 class="text-text-secondary text-xs font-semibold uppercase tracking-wider px-3 pb-2.5 ml-1">About</h3>
+<div class="bg-surface rounded-2xl overflow-hidden shadow-soft divide-y divide-divider border border-divider/50">
+<div class="group flex items-center gap-4 px-4 py-4 hover:bg-hover-state active:bg-blue-50 transition-colors cursor-pointer">
+<div class="flex items-center justify-center rounded-xl bg-icon-bg text-icon-color shrink-0 size-10">
+<span class="material-symbols-outlined text-[22px]">policy</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[15px] font-semibold text-text-main leading-none">Privacy policy</p>
+</div>
+<div class="text-text-tertiary group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">open_in_new</span>
+</div>
+</div>
+<div class="flex items-center gap-4 px-4 py-4">
+<div class="flex items-center justify-center rounded-xl bg-icon-bg text-icon-color shrink-0 size-10">
+<span class="material-symbols-outlined text-[22px]">info</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[15px] font-semibold text-text-main leading-none">App version</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-text-secondary text-sm font-medium">v1.0.4</span>
+</div>
+</div>
+</div>
+<div class="mt-8 flex flex-col items-center justify-center opacity-60">
+<p class="text-xs text-text-tertiary text-center">SpendSafe © 2023. Secure finance planning.</p>
+</div>
+</div>
+</div>
+
+</body></html>

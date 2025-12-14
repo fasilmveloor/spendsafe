@@ -1,0 +1,37 @@
+image: ghcr.io/cirruslabs/flutter:stable
+
+stages:
+  - lint
+  - test
+  - build
+
+variables:
+  FLUTTER_VERSION: "stable"
+
+before_script:
+  - flutter doctor
+  - flutter clean
+  - flutter pub get
+
+lint:
+  stage: lint
+  script:
+    - flutter analyze
+
+test:
+  stage: test
+  script:
+    - flutter test
+
+build_android:
+  stage: build
+  script:
+    - flutter build apk --release
+  artifacts:
+    paths:
+      - build/app/outputs/flutter-apk/app-release.apk
+    expire_in: 1 week
+  # Note: For signed builds in CI, you would typically use CI/CD variables 
+  # to inject the keystore and key.properties file securely.
+  # This configuration assumes a basic build or that release signing configuration 
+  # handles missing keys gracefully (or you configure it in CI settings).

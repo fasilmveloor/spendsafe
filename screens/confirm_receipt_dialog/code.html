@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SpendSafe - Confirm Receipt</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white antialiased">
+<!-- Main Container -->
+<div class="relative flex h-screen w-full flex-col overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Background Content (Simulating the Due Detail Screen) -->
+<div aria-hidden="true" class="flex-1 flex flex-col opacity-100 transition-opacity duration-300">
+<!-- Top App Bar -->
+<div class="flex items-center bg-white dark:bg-[#1e2632] p-4 pb-2 justify-between border-b border-gray-100 dark:border-gray-800">
+<div class="text-[#111318] dark:text-white flex size-12 shrink-0 items-center justify-center cursor-pointer rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+</div>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Due Detail</h2>
+</div>
+<!-- Content Area -->
+<div class="flex-1 overflow-y-auto p-4">
+<!-- User Profile / Avatar Placeholder -->
+<div class="flex flex-col items-center justify-center py-8">
+<div class="w-20 h-20 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-4 overflow-hidden">
+<span class="material-symbols-outlined text-gray-400 text-4xl">person</span>
+</div>
+<h1 class="text-3xl font-bold text-[#111318] dark:text-white">₹2,500</h1>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Owed by Freelance Client</p>
+</div>
+<!-- Description List -->
+<div class="bg-white dark:bg-[#1e2632] rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="grid grid-cols-[1fr_auto] gap-y-0">
+<div class="col-span-2 flex justify-between items-center border-b border-[#dbdfe6] dark:border-gray-700 p-4">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal">Amount</p>
+<p class="text-[#111318] dark:text-white text-sm font-medium">₹2,500</p>
+</div>
+<div class="col-span-2 flex justify-between items-center border-b border-[#dbdfe6] dark:border-gray-700 p-4">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal">Due Date</p>
+<p class="text-[#111318] dark:text-white text-sm font-medium">Oct 24, 2023</p>
+</div>
+<div class="col-span-2 flex justify-between items-center border-b border-[#dbdfe6] dark:border-gray-700 p-4">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal">Source</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span>
+<p class="text-[#111318] dark:text-white text-sm font-medium">Freelance Project</p>
+</div>
+</div>
+<div class="col-span-2 flex justify-between items-center p-4">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal">Status</p>
+<span class="px-2 py-1 rounded bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs font-medium">Pending</span>
+</div>
+</div>
+</div>
+<!-- Action Button (Trigger) -->
+<div class="mt-8">
+<button class="w-full bg-primary hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-xl shadow-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">check_circle</span>
+                        Mark as Received
+                    </button>
+</div>
+</div>
+</div>
+<!-- Overlay Backdrop -->
+<div class="absolute inset-0 z-40 bg-black/60 backdrop-blur-[2px] transition-opacity flex items-center justify-center p-4">
+<!-- Dialog Modal -->
+<div class="w-full max-w-[340px] bg-white dark:bg-[#1e2632] rounded-2xl shadow-2xl transform transition-all scale-100 overflow-hidden flex flex-col">
+<!-- Icon Header (Optional but good for Modern UI) -->
+<div class="pt-8 pb-2 flex justify-center">
+<div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">account_balance_wallet</span>
+</div>
+</div>
+<!-- Headline -->
+<div class="px-6 pb-2">
+<h2 class="text-[#111318] dark:text-white tracking-tight text-xl font-bold leading-tight text-center">
+                        Confirm Receipt?
+                    </h2>
+</div>
+<!-- Body Text -->
+<div class="px-6 pb-6">
+<p class="text-[#616f89] dark:text-gray-300 text-sm font-normal leading-relaxed text-center">
+                        This will create an income entry for <span class="font-bold text-[#111318] dark:text-white">₹2,500</span> under <span class="font-bold text-[#111318] dark:text-white">Freelance</span> and mark this due item as <span class="font-bold text-green-600 dark:text-green-400">Settled</span>.
+                    </p>
+</div>
+<!-- Button Group -->
+<div class="flex flex-col gap-3 px-6 pb-6">
+<!-- Primary Action -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-11 px-4 bg-primary hover:bg-blue-700 transition-colors text-white font-semibold text-sm shadow-md">
+<span class="truncate">Confirm Received</span>
+</button>
+<!-- Secondary Action -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-11 px-4 bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-500 dark:text-gray-400 font-medium text-sm">
+<span class="truncate">Cancel</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

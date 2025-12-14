@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Funds - SpendSafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white transition-colors duration-200">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden pb-24">
+<header class="sticky top-0 z-10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-4 pt-6 pb-2 border-b border-transparent transition-colors">
+<div class="flex items-center justify-between mb-1">
+<h2 class="text-[#111418] dark:text-white text-3xl font-extrabold leading-tight tracking-[-0.015em]">Funds</h2>
+<button class="flex items-center justify-center gap-1.5 text-primary hover:text-blue-600 transition-colors active:scale-95 bg-blue-50 dark:bg-blue-900/20 px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-[20px] font-bold">add</span>
+<span class="text-sm font-bold leading-normal tracking-[0.015em]">Create Fund</span>
+</button>
+</div>
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium leading-normal">Money reserved for future plans</p>
+</header>
+<main class="flex flex-col gap-4 px-4 mt-4">
+<div class="group relative flex flex-col gap-4 bg-white dark:bg-[#1a2634] p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md transition-all active:scale-[0.99]">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 shrink-0 w-12 h-12 border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-[24px]">health_and_safety</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111418] dark:text-white text-lg font-bold leading-tight">Emergency Fund</p>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-medium leading-normal mt-0.5">Target: ₹50,000</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-[#111418] dark:text-white text-lg font-bold leading-normal">₹50,000</p>
+<span class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-700 px-2 py-0.5 text-[10px] font-bold text-slate-600 dark:text-slate-300 mt-1">
+                            Fully funded
+                        </span>
+</div>
+</div>
+<div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
+<div class="h-full rounded-full bg-slate-500 dark:bg-slate-400" style="width: 100%;"></div>
+</div>
+<div class="flex items-center justify-between pt-1 mt-1">
+<span class="inline-flex items-center rounded-md bg-slate-100 dark:bg-slate-700/50 px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-600/50">
+                        Emergency
+                    </span>
+<div class="flex items-center gap-1.5 text-xs text-[#617589] dark:text-gray-500 font-medium">
+<span class="material-symbols-outlined text-[14px]">account_balance</span>
+<span>HDFC Savings</span>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col gap-4 bg-white dark:bg-[#1a2634] p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md transition-all active:scale-[0.99]">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 shrink-0 w-12 h-12 border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-[24px]">smartphone</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111418] dark:text-white text-lg font-bold leading-tight">New Phone</p>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-medium leading-normal mt-0.5">Target: ₹60,000</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-[#111418] dark:text-white text-lg font-bold leading-normal">₹25,000</p>
+<p class="text-xs text-[#617589] dark:text-gray-500 font-medium mt-1">41% saved</p>
+</div>
+</div>
+<div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
+<div class="h-full rounded-full bg-slate-400 dark:bg-slate-500" style="width: 41%;"></div>
+</div>
+<div class="flex items-center justify-between pt-1 mt-1">
+<span class="inline-flex items-center rounded-md bg-slate-100 dark:bg-slate-700/50 px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-600/50">
+                        Short-term
+                    </span>
+<div class="flex items-center gap-1.5 text-xs text-[#617589] dark:text-gray-500 font-medium">
+<span class="material-symbols-outlined text-[14px]">savings</span>
+<span>Liquid Fund</span>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col gap-4 bg-white dark:bg-[#1a2634] p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md transition-all active:scale-[0.99]">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 shrink-0 w-12 h-12 border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-[24px]">description</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111418] dark:text-white text-lg font-bold leading-tight">Annual Insurance</p>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-medium leading-normal mt-0.5">Target: ₹15,000</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-[#111418] dark:text-white text-lg font-bold leading-normal">₹12,000</p>
+<p class="text-xs text-[#617589] dark:text-gray-500 font-medium mt-1">80% saved</p>
+</div>
+</div>
+<div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
+<div class="h-full rounded-full bg-slate-400 dark:bg-slate-500" style="width: 80%;"></div>
+</div>
+<div class="flex items-center justify-between pt-1 mt-1">
+<span class="inline-flex items-center rounded-md bg-slate-100 dark:bg-slate-700/50 px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-600/50">
+                        Recurring
+                    </span>
+<div class="flex items-center gap-1.5 text-xs text-[#617589] dark:text-gray-500 font-medium">
+<span class="material-symbols-outlined text-[14px]">account_balance_wallet</span>
+<span>Salary Acct</span>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col gap-4 bg-white dark:bg-[#1a2634] p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md transition-all active:scale-[0.99]">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 shrink-0 w-12 h-12 border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-[24px]">flight</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111418] dark:text-white text-lg font-bold leading-tight">Japan Trip</p>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-medium leading-normal mt-0.5">Target: ₹2,00,000</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-[#111418] dark:text-white text-lg font-bold leading-normal">₹20,000</p>
+<p class="text-xs text-[#617589] dark:text-gray-500 font-medium mt-1">10% saved</p>
+</div>
+</div>
+<div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
+<div class="h-full rounded-full bg-slate-400 dark:bg-slate-500" style="width: 10%;"></div>
+</div>
+<div class="flex items-center justify-between pt-1 mt-1">
+<span class="inline-flex items-center rounded-md bg-slate-100 dark:bg-slate-700/50 px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-600/50">
+                        Long-term
+                    </span>
+<div class="flex items-center gap-1.5 text-xs text-[#617589] dark:text-gray-500 font-medium">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>Flexi Deposit</span>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-[#101922] border-t border-slate-200 dark:border-slate-800 pb-safe pt-2 px-2 z-50">
+<div class="flex items-center justify-around pb-2">
+<button class="flex flex-1 flex-col items-center gap-1 p-2 group text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-1 flex-col items-center gap-1 p-2 group text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">grid_view</span>
+<span class="text-[10px] font-medium">Categories</span>
+</button>
+<button class="flex flex-col items-center justify-center -mt-6">
+<div class="h-14 w-14 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-blue-500/30 active:scale-95 transition-transform text-white">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</div>
+</button>
+<button class="flex flex-1 flex-col items-center gap-1 p-2 group text-primary dark:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px] fill-current">account_balance_wallet</span>
+<span class="text-[10px] font-bold">Funds</span>
+</button>
+<button class="flex flex-1 flex-col items-center gap-1 p-2 group text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">monitoring</span>
+<span class="text-[10px] font-medium">Insights</span>
+</button>
+</div>
+</nav>
+</div>
+
+</body></html>

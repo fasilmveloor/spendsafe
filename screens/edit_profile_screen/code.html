@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Profile - SpendSafe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between px-4 py-3 bg-background-light dark:bg-background-dark sticky top-0 z-10">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer text-[#111318] dark:text-white">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] text-center">Edit Profile</h2>
+<div class="size-10"></div> <!-- Spacer for optical centering -->
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center w-full max-w-md mx-auto px-4 pb-6">
+<!-- Avatar Section -->
+<div class="flex flex-col items-center justify-center py-8">
+<div class="relative group cursor-pointer">
+<div class="h-32 w-32 rounded-full bg-cover bg-center border-4 border-white dark:border-[#1e2736] shadow-sm" data-alt="Portrait of a young woman with a neutral background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVlv06RUjwb5rAUjGM49YE1nwkKXPmQnsqtsgggJ80vyWFluZSPZyzJhw2-CNeGv2qpgT46oPivZ5vUUuv4S7vpXWxORQHwctCLnG4tFprSRZPeYHj9lyYvRw3CqlgzWv2F-CoQYhCEslSZ1Q1GxH2UUqBGvkr-bFr8dUL0yLc_wyd9CFlNK8Gf0Sg2gcMsnzMTuakhaAsW--nrYKq1eTmsgnlWiGmeWClvoGIxt6i1oONb6zm7tg73fYMtraQ4rFN5_Tmf-HRLq4');">
+</div>
+<!-- Edit Affordance -->
+<div class="absolute bottom-0 right-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white border-[3px] border-background-light dark:border-background-dark shadow-sm hover:bg-blue-600 transition-colors">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</div>
+</div>
+<p class="mt-4 text-[#111318] dark:text-white text-sm font-medium opacity-60">Change Photo</p>
+</div>
+<!-- Form Fields -->
+<div class="w-full flex flex-col gap-6 mt-2">
+<!-- Display Name Field -->
+<label class="flex flex-col w-full">
+<span class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Display Name</span>
+<div class="relative">
+<input class="form-input flex w-full min-w-0 rounded-lg text-[#111318] dark:text-white bg-white dark:bg-[#1a2230] border border-[#dbdfe6] dark:border-[#2e374a] focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none h-14 placeholder:text-[#616f89] dark:placeholder:text-gray-500 px-4 text-base font-normal leading-normal transition-shadow" placeholder="Enter your name" type="text" value="Alex Johnson"/>
+</div>
+</label>
+<!-- Email Address Field -->
+<label class="flex flex-col w-full">
+<span class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Email Address</span>
+<div class="relative">
+<input class="form-input flex w-full min-w-0 rounded-lg text-[#111318] dark:text-white bg-white dark:bg-[#1a2230] border border-[#dbdfe6] dark:border-[#2e374a] focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none h-14 placeholder:text-[#616f89] dark:placeholder:text-gray-500 px-4 text-base font-normal leading-normal transition-shadow" placeholder="Enter your email" type="email" value="alex.j@example.com"/>
+<!-- Optional icon to show it's editable or verified -->
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-primary">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</span>
+</div>
+</label>
+</div>
+<!-- Spacer to push content up if needed on large screens, or just gap -->
+<div class="flex-1 min-h-[40px]"></div>
+<!-- Action Buttons -->
+<div class="w-full flex flex-col gap-3 mt-auto pt-6">
+<!-- Primary Action -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-primary hover:bg-blue-700 active:bg-blue-800 text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors shadow-sm">
+<span class="truncate">Save Changes</span>
+</button>
+<!-- Secondary Action -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-transparent text-[#616f89] dark:text-gray-400 hover:text-[#111318] dark:hover:text-white text-base font-medium leading-normal transition-colors">
+<span class="truncate">Cancel</span>
+</button>
+</div>
+</main>
+</div>
+</body></html>
