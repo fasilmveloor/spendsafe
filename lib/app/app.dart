@@ -6,6 +6,7 @@ import '../core/db/seed_data.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../core/services/preferences_service.dart';
 import '../core/providers/theme_provider.dart';
+import '../features/splash/splash_screen.dart';
 
 /// Main SpendSafe app configuration
 class SpendSafeApp extends ConsumerWidget {
@@ -103,30 +104,7 @@ class _AppInitializerState extends State<AppInitializer> {
     }
 
     if (!_isInitialized) {
-      return Scaffold(
-        backgroundColor: AppTheme.backgroundLight,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const CircularProgressIndicator(),
-              const SizedBox(height: 24),
-              Text(
-                'SpendSafe',
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  color: AppTheme.primary,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Safe spending & planning',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ],
-          ),
-        ),
-      );
+      return const SplashScreen();
     }
 
     return _hasCompletedOnboarding 

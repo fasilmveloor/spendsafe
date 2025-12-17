@@ -19,7 +19,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   final PreferencesService _prefs = PreferencesService();
   final DatabaseHelper _db = DatabaseHelper.instance;
-  
+
   int _currentPage = 0;
   bool _isSaving = false;
 
@@ -29,7 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final _rentController = TextEditingController(text: '0');
   final _internetController = TextEditingController(text: '0');
   final _startBalanceController = TextEditingController(text: '0');
-  
+
   // State
   // State
 
@@ -155,6 +155,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 onPageChanged: (page) => setState(() => _currentPage = page),
                 children: [
                   _buildWelcomeStep(),
+                  _buildHowItWorksStep(),
                   _buildNameStep(),
                   _buildFinancialStep(),
                   _buildExpensesStep(),
@@ -162,13 +163,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ],
               ),
             ),
-            
+
             // Progress dots
             Padding(
               padding: const EdgeInsets.all(24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(5, (index) {
+                children: List.generate(6, (index) {
                   return Container(
                     margin: const EdgeInsets.symmetric(horizontal: 4),
                     width: 8,
@@ -210,7 +211,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ),
           const SizedBox(height: 32),
           const Text(
-            'Welcome to SpendSafe',
+            'Know what you can safely spend',
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w800,
@@ -220,7 +221,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ),
           const SizedBox(height: 16),
           const Text(
-            'The personal finance app that tells you exactly how much you can spend today without worry.',
+            'Most apps show where money went. SpendSafe shows what’s safe to spend — before you spend it.',
             style: TextStyle(
               fontSize: 16,
               color: AppTheme.textSecondary,
@@ -306,7 +307,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           style: TextStyle(color: AppTheme.textSecondary),
         ),
         const SizedBox(height: 32),
-        
+
         const Text('Current Bank Balance', style: TextStyle(fontWeight: FontWeight.w600)),
         const SizedBox(height: 8),
         TextField(
@@ -333,7 +334,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
         ),
-        
+
         const SizedBox(height: 48),
         ElevatedButton(
           onPressed: _nextPage,
@@ -367,7 +368,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           style: TextStyle(color: AppTheme.textSecondary),
         ),
         const SizedBox(height: 32),
-        
+
         const Text('Rent / Mortgage', style: TextStyle(fontWeight: FontWeight.w600)),
         const SizedBox(height: 8),
         TextField(
@@ -394,7 +395,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
         ),
-        
+
         const SizedBox(height: 48),
         ElevatedButton(
           onPressed: _nextPage,
@@ -407,6 +408,295 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: const Text('Calculate My Pace'),
         ),
       ],
+    );
+  }
+
+  Widget _buildHowItWorksStep() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 24),
+          const Text(
+            "Control, don't just track",
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.w800,
+              color: AppTheme.textPrimary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            'Set your limit. We calculate exactly what is Safe to Spend right now so you never overspend by accident.',
+            style: TextStyle(
+              fontSize: 16,
+              color: AppTheme.textSecondary,
+              height: 1.5,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 48),
+
+          // Card 1: Available to Spend
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.grey.shade200),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.blue.shade50,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Icon(Icons.account_balance_wallet, color: AppTheme.primary),
+                    ),
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Available to Spend',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: AppTheme.textPrimary,
+                          ),
+                        ),
+                        Text(
+                          'Real-time budget tracking',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: AppTheme.textSecondary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'AVAILABLE TO SPEND',
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey.shade400,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    const Text(
+                      '₹2,00,000',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.textPrimary,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                // Progress Bar
+                Container(
+                  height: 12,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: FractionallySizedBox(
+                    widthFactor: 0.38,
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppTheme.primary,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Spent so far', style: TextStyle(fontSize: 12, color: Colors.grey.shade400)),
+                        const Text('₹75,000', style: TextStyle(fontWeight: FontWeight.w600, color: AppTheme.textPrimary)),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const Text('Available', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.primary)),
+                        const Text('₹1,25,000', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800, color: AppTheme.primary, height: 1)),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 24),
+
+          // Card 2: Safe Pace
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.grey.shade200),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.green.shade50,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Icon(Icons.speed, color: Colors.green),
+                    ),
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Safe Pace',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: AppTheme.textPrimary,
+                          ),
+                        ),
+                        Text(
+                          'Daily spending allowance',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: AppTheme.textSecondary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppTheme.backgroundLight,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'SAFE PACE TODAY',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey.shade400,
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.baseline,
+                                textBaseline: TextBaseline.alphabetic,
+                                children: const [
+                                  Text(
+                                    '₹6,500',
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w800,
+                                      color: AppTheme.textPrimary,
+                                    ),
+                                  ),
+                                  SizedBox(width: 4),
+                                  Text(
+                                    '/ day',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppTheme.textSecondary,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.green.withOpacity(0.2),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.check, color: Colors.green, size: 20),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      const Divider(),
+                      const SizedBox(height: 8),
+                      Text(
+                        'This adjusts automatically as you spend.',
+                        style: TextStyle(fontSize: 12, fontStyle: FontStyle.italic, color: AppTheme.textSecondary),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 48),
+
+          ElevatedButton(
+            onPressed: _nextPage,
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(double.infinity, 56),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
+              ),
+            ),
+            child: const Text('Continue'),
+          ),
+        ],
+      ),
     );
   }
 
