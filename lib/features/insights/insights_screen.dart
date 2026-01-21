@@ -15,7 +15,7 @@ class InsightsScreen extends StatefulWidget {
 
 class _InsightsScreenState extends State<InsightsScreen> {
   final DatabaseHelper _db = DatabaseHelper.instance;
-  
+
   Map<String, double> _categorySpending = {};
   double _totalSpending = 0.0;
   int _transactionCount = 0;
@@ -27,13 +27,19 @@ class _InsightsScreenState extends State<InsightsScreen> {
     _loadData();
   }
 
+  /// Public method to refresh data from navigation scaffold
+  void refreshData() {
+    _loadData();
+  }
+
   Future<void> _loadData() async {
     // Get this month's spending by category
     final now = DateTime.now();
     final startOfMonth = DateTime(now.year, now.month, 1);
     final endOfMonth = DateTime(now.year, now.month + 1, 0, 23, 59, 59);
-    
-    final result = await _db.rawQuery('''
+
+    final result = await _db.rawQuery(
+      '''
       SELECT c.name, COALESCE(SUM(e.amount), 0) as total, COUNT(e.id) as count
       FROM categories c
       LEFT JOIN expenses e ON c.id = e.category_id 
@@ -41,12 +47,14 @@ class _InsightsScreenState extends State<InsightsScreen> {
       GROUP BY c.id, c.name
       HAVING total > 0
       ORDER BY total DESC
-    ''', [startOfMonth.millisecondsSinceEpoch, endOfMonth.millisecondsSinceEpoch]);
-    
+    ''',
+      [startOfMonth.millisecondsSinceEpoch, endOfMonth.millisecondsSinceEpoch],
+    );
+
     final Map<String, double> spending = {};
     double total = 0.0;
     int count = 0;
-    
+
     for (final row in result) {
       final name = row['name'] as String;
       final amount = (row['total'] as num).toDouble();
@@ -55,7 +63,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
       total += amount;
       count += txCount;
     }
-    
+
     setState(() {
       _categorySpending = spending;
       _totalSpending = total;
@@ -73,9 +81,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Insights'),
-      ),
+      appBar: AppBar(title: const Text('Insights')),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : RefreshIndicator(
@@ -102,7 +108,9 @@ class _InsightsScreenState extends State<InsightsScreen> {
                           Text(
                             'Add some expenses to see insights',
                             style: TextStyle(
-                              color: AppTheme.textSecondary.withAlpha((0.8 * 255).toInt()),
+                              color: AppTheme.textSecondary.withAlpha(
+                                (0.8 * 255).toInt(),
+                              ),
                             ),
                           ),
                         ],
@@ -120,7 +128,9 @@ class _InsightsScreenState extends State<InsightsScreen> {
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                             ),
-                            borderRadius: BorderRadius.circular(AppTheme.radiusXL),
+                            borderRadius: BorderRadius.circular(
+                              AppTheme.radiusXL,
+                            ),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,7 +145,9 @@ class _InsightsScreenState extends State<InsightsScreen> {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                currencyFormat.format(_totalSpending).replaceAll('.00', ''),
+                                currencyFormat
+                                    .format(_totalSpending)
+                                    .replaceAll('.00', ''),
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 36,
@@ -154,7 +166,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
                           ),
                         ),
                         const SizedBox(height: 32),
-                        
+
                         // Pie chart
                         const Text(
                           'Spending by Category',
@@ -169,7 +181,9 @@ class _InsightsScreenState extends State<InsightsScreen> {
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(AppTheme.radiusXL),
+                            borderRadius: BorderRadius.circular(
+                              AppTheme.radiusXL,
+                            ),
                             border: Border.all(color: Colors.grey.shade100),
                           ),
                           child: PieChart(
@@ -181,7 +195,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
                           ),
                         ),
                         const SizedBox(height: 24),
-                        
+
                         // Category breakdown list
                         const Text(
                           'Category Breakdown',
@@ -192,16 +206,23 @@ class _InsightsScreenState extends State<InsightsScreen> {
                         ),
                         const SizedBox(height: 12),
                         ..._categorySpending.entries.map((entry) {
-                          final percentage = (_categorySpending[entry.key]! / _totalSpending * 100);
-                          final color = _getCategoryColor(_categorySpending.keys.toList().indexOf(entry.key));
-                          
+                          final percentage =
+                              (_categorySpending[entry.key]! /
+                              _totalSpending *
+                              100);
+                          final color = _getCategoryColor(
+                            _categorySpending.keys.toList().indexOf(entry.key),
+                          );
+
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 12),
                             child: Container(
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
+                                borderRadius: BorderRadius.circular(
+                                  AppTheme.radiusLarge,
+                                ),
                                 border: Border.all(color: Colors.grey.shade100),
                               ),
                               child: Row(
@@ -228,7 +249,9 @@ class _InsightsScreenState extends State<InsightsScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Text(
-                                        currencyFormat.format(entry.value).replaceAll('.00', ''),
+                                        currencyFormat
+                                            .format(entry.value)
+                                            .replaceAll('.00', ''),
                                         style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w700,
@@ -239,7 +262,8 @@ class _InsightsScreenState extends State<InsightsScreen> {
                                         '${percentage.toStringAsFixed(1)}%',
                                         style: TextStyle(
                                           fontSize: 12,
-                                          color: AppTheme.textSecondary.withAlpha((0.8 * 255).toInt()),
+                                          color: AppTheme.textSecondary
+                                              .withAlpha((0.8 * 255).toInt()),
                                         ),
                                       ),
                                     ],
@@ -273,7 +297,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
       final index = _categorySpending.keys.toList().indexOf(entry.key);
       final color = colors[index % colors.length];
       final percentage = (entry.value / _totalSpending * 100);
-      
+
       return PieChartSectionData(
         color: color,
         value: entry.value,

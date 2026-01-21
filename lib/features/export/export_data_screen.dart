@@ -42,15 +42,25 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
 
       // Convert to CSV
       final List<List<dynamic>> rows = [];
-      
+
       // Header
-      rows.add(['ID', 'Date', 'Amount', 'Category', 'Account', 'Note', 'Auto-Detected']);
-      
+      rows.add([
+        'ID',
+        'Date',
+        'Amount',
+        'Category',
+        'Account',
+        'Note',
+        'Auto-Detected',
+      ]);
+
       // Data rows
       for (final expense in expenses) {
-        final date = DateTime.fromMillisecondsSinceEpoch(expense['expense_date'] as int);
+        final date = DateTime.fromMillisecondsSinceEpoch(
+          expense['expense_date'] as int,
+        );
         final dateStr = DateFormat('yyyy-MM-dd HH:mm').format(date);
-        
+
         rows.add([
           expense['id'],
           dateStr,
@@ -65,9 +75,9 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
       await _saveCsvFile('expenses', rows);
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error exporting expenses: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error exporting expenses: $e')));
       }
     } finally {
       if (mounted) {
@@ -96,11 +106,13 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
 
       final List<List<dynamic>> rows = [];
       rows.add(['ID', 'Date', 'Amount', 'Source', 'Account', 'Note']);
-      
+
       for (final record in income) {
-        final date = DateTime.fromMillisecondsSinceEpoch(record['received_date'] as int);
+        final date = DateTime.fromMillisecondsSinceEpoch(
+          record['received_date'] as int,
+        );
         final dateStr = DateFormat('yyyy-MM-dd HH:mm').format(date);
-        
+
         rows.add([
           record['id'],
           dateStr,
@@ -114,9 +126,9 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
       await _saveCsvFile('income', rows);
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error exporting income: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error exporting income: $e')));
       }
     } finally {
       if (mounted) {
@@ -133,7 +145,7 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
 
       final List<List<dynamic>> rows = [];
       rows.add(['ID', 'Name', 'Icon', 'Monthly Budget', 'Warning Threshold']);
-      
+
       for (final cat in categories) {
         rows.add([
           cat['id'],
@@ -165,14 +177,23 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
       final funds = await _db.query('funds', orderBy: 'name ASC');
 
       final List<List<dynamic>> rows = [];
-      rows.add(['ID', 'Name', 'Label', 'Storage Type', 'Target Amount', 'Target Date', 'Active']);
-      
+      rows.add([
+        'ID',
+        'Name',
+        'Label',
+        'Storage Type',
+        'Target Amount',
+        'Target Date',
+        'Active',
+      ]);
+
       for (final fund in funds) {
         final targetDate = fund['target_date'] != null
             ? DateFormat('yyyy-MM-dd').format(
-                DateTime.fromMillisecondsSinceEpoch(fund['target_date'] as int))
+                DateTime.fromMillisecondsSinceEpoch(fund['target_date'] as int),
+              )
             : '';
-        
+
         rows.add([
           fund['id'],
           fund['name'],
@@ -187,9 +208,9 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
       await _saveCsvFile('funds', rows);
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error exporting funds: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error exporting funds: $e')));
       }
     } finally {
       if (mounted) {
@@ -206,7 +227,7 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
       await _exportIncome();
       await _exportCategories();
       await _exportFunds();
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -226,23 +247,43 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
     try {
       // Convert to CSV string
       final csv = const ListToCsvConverter().convert(rows);
-      
-      // Get documents directory
-      final directory = await getApplicationDocumentsDirectory();
+
+      // Get Downloads directory (fallback to external storage for Android)
+      Directory? directory = await getDownloadsDirectory();
+      if (directory == null) {
+        // Fallback for Android - use external storage Downloads
+        directory = await getExternalStorageDirectory();
+        if (directory != null) {
+          // Navigate to Downloads folder
+          final downloadsPath = directory.path.replaceAll(
+            RegExp(r'/Android/data/[^/]+/files'),
+            '/Download',
+          );
+          directory = Directory(downloadsPath);
+          if (!await directory.exists()) {
+            await directory.create(recursive: true);
+          }
+        }
+      }
+
+      if (directory == null) {
+        throw Exception('Could not access Downloads folder');
+      }
+
       final timestamp = DateFormat('yyyyMMdd_HHmmss').format(DateTime.now());
       final fileName = 'spendsafe_${name}_$timestamp.csv';
       final filePath = '${directory.path}/$fileName';
-      
+
       // Write file
       final file = File(filePath);
       await file.writeAsString(csv);
-      
+
       setState(() => _lastExportPath = filePath);
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Exported $name to:\n$filePath'),
+            content: Text('Exported $name to:\\n$filePath'),
             duration: const Duration(seconds: 4),
           ),
         );
@@ -255,9 +296,7 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Export Data'),
-      ),
+      appBar: AppBar(title: const Text('Export Data')),
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [
@@ -294,10 +333,7 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
 
           const Text(
             'Export Options',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-            ),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 12),
 
@@ -445,11 +481,7 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
                 color: iconColor.withAlpha((0.1 * 255).toInt()),
                 borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
               ),
-              child: Icon(
-                icon,
-                size: 22,
-                color: iconColor,
-              ),
+              child: Icon(icon, size: 22, color: iconColor),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -468,7 +500,9 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
                     subtitle,
                     style: TextStyle(
                       fontSize: 12,
-                      color: AppTheme.textSecondary.withAlpha((0.8 * 255).toInt()),
+                      color: AppTheme.textSecondary.withAlpha(
+                        (0.8 * 255).toInt(),
+                      ),
                     ),
                   ),
                 ],

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../shared/theme/app_theme.dart';
 import '../../core/providers/theme_provider.dart';
+import '../../core/services/preferences_service.dart';
 import '../income/income_overview_screen.dart';
+import '../income/accounts_screen.dart';
 
 import '../fixed_expenses/fixed_expenses_screen.dart';
 import '../alerts/alerts_screen.dart';
@@ -13,18 +15,100 @@ import 'privacy_policy_screen.dart';
 import 'help_support_screen.dart';
 import 'profile_screen.dart';
 import 'backup_screen.dart';
+import '../../core/db/database_helper.dart';
+import '../onboarding/onboarding_screen.dart';
 
 /// Settings/More screen
 /// Provides access to additional features and settings
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  String _userName = 'My Home';
+  String _userEmail = 'user@spendsafe.com';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserProfile();
+  }
+
+  Future<void> _loadUserProfile() async {
+    final prefs = PreferencesService();
+    final userName = await prefs.getUserName();
+    final userEmail = await prefs.getUserEmail();
+    if (mounted) {
+      setState(() {
+        _userName = userName ?? 'My Home';
+        _userEmail = userEmail ?? 'user@spendsafe.com';
+      });
+    }
+  }
+
+  Future<void> _resetAppData() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Reset App Data?'),
+        content: const Text(
+          'This will delete ALL data including expenses, categories, constraints, and user settings. This action CANNOT be undone.\n\nAre you sure you want to proceed?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Reset Everything'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true && mounted) {
+      // Show loading indicator
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(child: CircularProgressIndicator()),
+      );
+
+      try {
+        // 1. Clear database
+        await DatabaseHelper.instance.deleteDB();
+
+        // 2. Clear preferences
+        final prefs = PreferencesService();
+        await prefs.clearAll();
+
+        if (mounted) {
+          // 3. Navigate to onboarding
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const OnboardingScreen()),
+            (route) => false,
+          );
+        }
+      } catch (e) {
+        if (mounted) {
+          Navigator.pop(context); // Hide loading
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('Error resetting data: $e')));
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('More'),
-      ),
+      appBar: AppBar(title: const Text('More')),
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [
@@ -55,22 +139,22 @@ class SettingsScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 16),
-                const Expanded(
+                Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'My Home',
-                        style: TextStyle(
+                        _userName,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
-                        'user@spendsafe.com',
-                        style: TextStyle(
+                        _userEmail,
+                        style: const TextStyle(
                           color: Colors.white70,
                           fontSize: 13,
                         ),
@@ -92,7 +176,7 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          
+
           // Income & Expenses section
           const Text(
             'Money Management',
@@ -114,6 +198,19 @@ class SettingsScreen extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => const IncomeOverviewScreen(),
                 ),
+              );
+            },
+          ),
+          const SizedBox(height: 8),
+          _buildMenuItem(
+            context,
+            icon: Icons.account_balance_wallet,
+            iconColor: Colors.blue,
+            title: 'Accounts',
+            subtitle: 'Manage your payment accounts',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const AccountsScreen()),
               );
             },
           ),
@@ -148,7 +245,7 @@ class SettingsScreen extends StatelessWidget {
             },
           ),
           const SizedBox(height: 24),
-          
+
           // App settings section
           const Text(
             'App Settings',
@@ -167,9 +264,7 @@ class SettingsScreen extends StatelessWidget {
             subtitle: 'View system alerts',
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const AlertsScreen(),
-                ),
+                MaterialPageRoute(builder: (context) => const AlertsScreen()),
               );
             },
           ),
@@ -197,9 +292,7 @@ class SettingsScreen extends StatelessWidget {
             subtitle: 'Google Drive backup',
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const BackupScreen(),
-                ),
+                MaterialPageRoute(builder: (context) => const BackupScreen()),
               );
             },
           ),
@@ -263,7 +356,7 @@ class SettingsScreen extends StatelessWidget {
             },
           ),
           const SizedBox(height: 24),
-          
+
           // About section
           const Text(
             'About',
@@ -312,11 +405,89 @@ class SettingsScreen extends StatelessWidget {
             subtitle: 'Version 1.0.0',
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const AboutScreen(),
-                ),
+                MaterialPageRoute(builder: (context) => const AboutScreen()),
               );
             },
+          ),
+          const SizedBox(height: 32),
+
+          // Danger Zone
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.red.shade50,
+              borderRadius: BorderRadius.circular(AppTheme.radiusXL),
+              border: Border.all(color: Colors.red.shade100),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Danger Zone',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.red,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                InkWell(
+                  onTap: _resetAppData,
+                  borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
+                      border: Border.all(color: Colors.red.shade100),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 44,
+                          height: 44,
+                          decoration: BoxDecoration(
+                            color: Colors.red.withAlpha((0.1 * 255).toInt()),
+                            borderRadius: BorderRadius.circular(
+                              AppTheme.radiusLarge,
+                            ),
+                          ),
+                          child: const Icon(
+                            Icons.delete_forever,
+                            size: 22,
+                            color: Colors.red,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Reset App Data',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.red,
+                                ),
+                              ),
+                              SizedBox(height: 2),
+                              Text(
+                                'Clear all data and reset app',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -350,11 +521,7 @@ class SettingsScreen extends StatelessWidget {
                 color: iconColor.withAlpha((0.1 * 255).toInt()),
                 borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
               ),
-              child: Icon(
-                icon,
-                size: 22,
-                color: iconColor,
-              ),
+              child: Icon(icon, size: 22, color: iconColor),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -373,7 +540,9 @@ class SettingsScreen extends StatelessWidget {
                     subtitle,
                     style: TextStyle(
                       fontSize: 12,
-                      color: AppTheme.textSecondary.withAlpha((0.8 * 255).toInt()),
+                      color: AppTheme.textSecondary.withAlpha(
+                        (0.8 * 255).toInt(),
+                      ),
                     ),
                   ),
                 ],

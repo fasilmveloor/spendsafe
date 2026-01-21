@@ -17,13 +17,14 @@ class MainNavigationScaffold extends StatefulWidget {
 class _MainNavigationScaffoldState extends State<MainNavigationScaffold> {
   int _currentIndex = 0;
   final GlobalKey<State<HomeScreen>> _homeKey = GlobalKey();
-  
+  final GlobalKey<State<InsightsScreen>> _insightsKey = GlobalKey();
+
   List<Widget> get _screens => [
     HomeScreen(key: _homeKey),
     const CategoriesScreen(),
     const SizedBox(), // Placeholder for FAB
     const FundsScreen(),
-    const InsightsScreen(),
+    InsightsScreen(key: _insightsKey),
   ];
 
   void _onTabTapped(int index) {
@@ -34,32 +35,51 @@ class _MainNavigationScaffoldState extends State<MainNavigationScaffold> {
       setState(() {
         _currentIndex = index;
       });
+      // Refresh screens when switching tabs
+      if (index == 0) {
+        _refreshHomeScreen();
+      } else if (index == 4) {
+        _refreshInsightsScreen();
+      }
     }
   }
-  
+
+  void _refreshHomeScreen() {
+    final homeState = _homeKey.currentState;
+    if (homeState != null) {
+      try {
+        (homeState as dynamic).refreshData();
+      } catch (_) {}
+    }
+  }
+
+  void _refreshInsightsScreen() {
+    final insightsState = _insightsKey.currentState;
+    if (insightsState != null) {
+      try {
+        (insightsState as dynamic).refreshData();
+      } catch (_) {}
+    }
+  }
+
   Future<void> _navigateToAddExpense() async {
     final result = await Navigator.of(context).push<bool>(
-      MaterialPageRoute(
-        builder: (context) => const AddExpenseScreen(),
-      ),
+      MaterialPageRoute(builder: (context) => const AddExpenseScreen()),
     );
-    
+
     // Refresh home screen if expense was added
-    if (result == true && _homeKey.currentState != null) {
-      // Return to home and refresh
+    if (result == true) {
       setState(() {
         _currentIndex = 0;
       });
+      _refreshHomeScreen();
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _screens,
-      ),
+      body: IndexedStack(index: _currentIndex, children: _screens),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
@@ -68,10 +88,7 @@ class _MainNavigationScaffoldState extends State<MainNavigationScaffold> {
         selectedItemColor: AppTheme.primary,
         unselectedItemColor: AppTheme.textSecondary,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
             icon: Icon(Icons.category_outlined),
             label: 'Categories',

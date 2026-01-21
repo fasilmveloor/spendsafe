@@ -152,7 +152,7 @@ class _SearchTransactionScreenState extends State<SearchTransactionScreen> {
                         final record = _searchResults[index];
                         final expense = Expense.fromMap(record);
                         final categoryName = record['category_name'] as String? ?? 'Uncategorized';
-                        final categoryIcon = record['category_icon'] as int? ?? Icons.category.codePoint;
+                        final categoryIconName = record['category_icon'] as String?;
                         final categoryColor = record['category_color'] as int? ?? Colors.grey.value;
 
                         return Card(
@@ -170,7 +170,7 @@ class _SearchTransactionScreenState extends State<SearchTransactionScreen> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Icon(
-                                IconData(categoryIcon, fontFamily: 'MaterialIcons'),
+                                _getCategoryIcon(categoryIconName),
                                 color: Color(categoryColor),
                                 size: 24,
                               ),
@@ -215,5 +215,22 @@ class _SearchTransactionScreenState extends State<SearchTransactionScreen> {
                       },
                     ),
     );
+  }
+
+  IconData _getCategoryIcon(String? iconName) {
+    switch (iconName) {
+      case 'shopping_cart':
+        return Icons.shopping_cart;
+      case 'directions_car':
+        return Icons.directions_car;
+      case 'restaurant':
+        return Icons.restaurant;
+      case 'movie':
+        return Icons.movie;
+      case 'shopping_bag':
+        return Icons.shopping_bag;
+      default:
+        return Icons.category;
+    }
   }
 }

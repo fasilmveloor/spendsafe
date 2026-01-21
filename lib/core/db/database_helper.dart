@@ -22,10 +22,10 @@ class DatabaseHelper {
   Future<Database> _initDB(String filePath) async {
     final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
     final String dbPath = join(appDocumentsDir.path, filePath);
-    
+
     return await openDatabase(
       dbPath,
-      version: 1,
+      version: 3,
       onCreate: _createDB,
       onUpgrade: _upgradeDB,
     );
@@ -53,7 +53,11 @@ class DatabaseHelper {
         type TEXT NOT NULL,
         balance REAL DEFAULT 0,
         include_in_fts INTEGER DEFAULT 1,
-        created_at INTEGER NOT NULL
+        icon INTEGER,
+        color INTEGER,
+        is_default INTEGER DEFAULT 0,
+        created_at INTEGER NOT NULL,
+        updated_at INTEGER
       )
     ''');
 
@@ -63,8 +67,10 @@ class DatabaseHelper {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         account_id INTEGER,
+        amount REAL DEFAULT 0,
         is_active INTEGER DEFAULT 1,
         created_at INTEGER NOT NULL,
+        updated_at INTEGER,
         FOREIGN KEY (account_id) REFERENCES accounts (id)
       )
     ''');
@@ -181,19 +187,34 @@ class DatabaseHelper {
     ''');
 
     // Create indexes for better query performance
-    await db.execute('CREATE INDEX idx_expenses_date ON expenses(expense_date)');
-    await db.execute('CREATE INDEX idx_expenses_category ON expenses(category_id)');
+    await db.execute(
+      'CREATE INDEX idx_expenses_date ON expenses(expense_date)',
+    );
+    await db.execute(
+      'CREATE INDEX idx_expenses_category ON expenses(category_id)',
+    );
     await db.execute('CREATE INDEX idx_income_date ON income(received_date)');
     await db.execute('CREATE INDEX idx_alerts_read ON alerts(is_read)');
   }
 
   /// Handle database upgrades (migrations)
   Future<void> _upgradeDB(Database db, int oldVersion, int newVersion) async {
-    // TODO: Add migration logic when schema changes
-    // Example:
-    // if (oldVersion < 2) {
-    //   await db.execute('ALTER TABLE users ADD COLUMN phone TEXT');
-    // }
+    if (oldVersion < 2) {
+      await db.execute('ALTER TABLE accounts ADD COLUMN icon INTEGER');
+      await db.execute('ALTER TABLE accounts ADD COLUMN color INTEGER');
+      await db.execute(
+        'ALTER TABLE accounts ADD COLUMN is_default INTEGER DEFAULT 0',
+      );
+      await db.execute('ALTER TABLE accounts ADD COLUMN updated_at INTEGER');
+    }
+    if (oldVersion < 3) {
+      await db.execute(
+        'ALTER TABLE income_sources ADD COLUMN amount REAL DEFAULT 0',
+      );
+      await db.execute(
+        'ALTER TABLE income_sources ADD COLUMN updated_at INTEGER',
+      );
+    }
   }
 
   /// Close database
@@ -201,8 +222,6 @@ class DatabaseHelper {
     final db = await database;
     await db.close();
   }
-
-
 
   /// Get the database file for backup purposes
   Future<File> getDatabaseFile() async {
@@ -255,12 +274,7 @@ class DatabaseHelper {
     List<Object?>? whereArgs,
   }) async {
     final db = await database;
-    return await db.update(
-      table,
-      data,
-      where: where,
-      whereArgs: whereArgs,
-    );
+    return await db.update(table, data, where: where, whereArgs: whereArgs);
   }
 
   /// Generic delete method
@@ -270,15 +284,14 @@ class DatabaseHelper {
     List<Object?>? whereArgs,
   }) async {
     final db = await database;
-    return await db.delete(
-      table,
-      where: where,
-      whereArgs: whereArgs,
-    );
+    return await db.delete(table, where: where, whereArgs: whereArgs);
   }
 
   /// Raw query method
-  Future<List<Map<String, dynamic>>> rawQuery(String sql, [List<Object?>? arguments]) async {
+  Future<List<Map<String, dynamic>>> rawQuery(
+    String sql, [
+    List<Object?>? arguments,
+  ]) async {
     final db = await database;
     return await db.rawQuery(sql, arguments);
   }

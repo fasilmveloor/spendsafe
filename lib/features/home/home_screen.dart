@@ -5,6 +5,7 @@ import '../../core/db/database_helper.dart';
 import '../../core/models/expense.dart';
 import '../../core/models/category.dart';
 import '../../shared/theme/app_theme.dart';
+import '../../core/services/preferences_service.dart';
 import '../../shared/widgets/transaction_card.dart';
 import '../expenses/add_expense_screen.dart';
 import '../settings/settings_screen.dart';
@@ -22,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final MoneyCalculationService _moneyService = MoneyCalculationService();
-  
+
   double _fts = 0.0;
   double _safePace = 0.0;
   double _todaySpending = 0.0;
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Map<String, dynamic>> _recentTransactions = [];
   int _unreadAlerts = 0;
   bool _isLoading = true;
+  String _userName = 'My Home';
 
   @override
   void initState() {
@@ -37,14 +39,23 @@ class _HomeScreenState extends State<HomeScreen> {
     _loadData();
   }
 
+  /// Public method to refresh data from navigation scaffold
+  void refreshData() {
+    _loadData();
+  }
+
   Future<void> _loadData() async {
     final now = DateTime.now();
-    
+
+    // Load user name from preferences
+    final prefs = PreferencesService();
+    final userName = await prefs.getUserName();
+
     final fts = await _moneyService.calculateFreeToSpend(now);
     final safePace = await _moneyService.calculateSafePace(now);
     final todaySpending = await _moneyService.getTodaySpending(now);
     final remainingToday = await _moneyService.getRemainingToday(now);
-    
+
     // Load recent transactions (last 5)
     final db = DatabaseHelper.instance;
     final transactions = await db.rawQuery('''
@@ -55,13 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ORDER BY e.expense_date DESC
       LIMIT 5
     ''');
-    
+
     // Load unread alerts count
     final alertsResult = await db.rawQuery(
       'SELECT COUNT(*) as count FROM alerts WHERE is_read = 0',
     );
     final unreadAlerts = (alertsResult.first['count'] as int?) ?? 0;
-    
+
     setState(() {
       _fts = fts;
       _safePace = safePace;
@@ -69,18 +80,23 @@ class _HomeScreenState extends State<HomeScreen> {
       _remainingToday = remainingToday;
       _recentTransactions = transactions;
       _unreadAlerts = unreadAlerts;
+      _userName = userName ?? 'My Home';
       _isLoading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final currencyFormat = NumberFormat.currency(locale: 'en_IN', symbol: '₹', decimalDigits: 0);
+    final currencyFormat = NumberFormat.currency(
+      locale: 'en_IN',
+      symbol: '₹',
+      decimalDigits: 0,
+    );
     final monthFormat = DateFormat('MMMM yyyy');
-    
+
     return Scaffold(
       appBar: AppBar(
-        title:Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
@@ -91,12 +107,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppTheme.textSecondary,
               ),
             ),
-            const Text(
-              'My Home',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-              ),
+            Text(
+              _userName,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
             ),
           ],
         ),
@@ -134,9 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onPressed: () async {
               await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const AlertsScreen(),
-                ),
+                MaterialPageRoute(builder: (context) => const AlertsScreen()),
               );
               // Refresh to update badge
               _loadData();
@@ -156,9 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.settings_outlined),
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const SettingsScreen(),
-                ),
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
               );
             },
           ),
@@ -185,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    
+
                     // Available to Spend (hero metric)
                     Text(
                       currencyFormat.format(_fts).replaceAll('.00', ''),
@@ -207,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    
+
                     // Safe pace
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -230,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     const SizedBox(height: 32),
-                    
+
                     // Today's progress bar
                     Container(
                       padding: const EdgeInsets.all(16),
@@ -246,32 +255,44 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 8,
                             decoration: BoxDecoration(
                               color: Colors.grey.shade100,
-                              borderRadius: BorderRadius.circular(AppTheme.radiusFull),
+                              borderRadius: BorderRadius.circular(
+                                AppTheme.radiusFull,
+                              ),
                             ),
                             child: Row(
                               children: [
                                 if (_todaySpending > 0)
                                   Expanded(
-                                    flex: (_safePace > 0 ? ((_todaySpending / _safePace) * 100).clamp(0, 100).toInt() : 100),
+                                    flex: (_safePace > 0
+                                        ? ((_todaySpending / _safePace) * 100)
+                                              .clamp(0, 100)
+                                              .toInt()
+                                        : 100),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: _remainingToday < 0 
-                                            ? AppTheme.alertAmberIcon 
+                                        color: _remainingToday < 0
+                                            ? AppTheme.alertAmberIcon
                                             : AppTheme.primary,
-                                        borderRadius: BorderRadius.circular(AppTheme.radiusFull),
+                                        borderRadius: BorderRadius.circular(
+                                          AppTheme.radiusFull,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 if (_safePace > 0 && _todaySpending < _safePace)
                                   Expanded(
-                                    flex: (100 - ((_todaySpending / _safePace) * 100).clamp(0, 100).toInt()),
+                                    flex:
+                                        (100 -
+                                        ((_todaySpending / _safePace) * 100)
+                                            .clamp(0, 100)
+                                            .toInt()),
                                     child: const SizedBox(),
                                   ),
                               ],
                             ),
                           ),
                           const SizedBox(height: 12),
-                          
+
                           // Stats row
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -289,8 +310,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
-                                  color: _remainingToday < 0 
-                                      ? AppTheme.alertAmberText 
+                                  color: _remainingToday < 0
+                                      ? AppTheme.alertAmberText
                                       : AppTheme.textPrimary,
                                 ),
                               ),
@@ -299,7 +320,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    
+
                     // Alert banner (if exceeded pace)
                     if (_remainingToday < 0) ...[
                       const SizedBox(height: 24),
@@ -307,7 +328,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           color: AppTheme.alertAmberBg,
-                          borderRadius: BorderRadius.circular(AppTheme.radiusXL),
+                          borderRadius: BorderRadius.circular(
+                            AppTheme.radiusXL,
+                          ),
                           border: Border.all(color: Colors.amber.shade100),
                         ),
                         child: Row(
@@ -317,7 +340,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(AppTheme.radiusFull),
+                                borderRadius: BorderRadius.circular(
+                                  AppTheme.radiusFull,
+                                ),
                               ),
                               child: const Icon(
                                 Icons.warning_rounded,
@@ -344,7 +369,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     'This reduces available spend for upcoming days.',
                                     style: TextStyle(
                                       fontSize: 12,
-                                      color: Colors.amber.shade900.withOpacity(0.8),
+                                      color: Colors.amber.shade900.withOpacity(
+                                        0.8,
+                                      ),
                                       height: 1.5,
                                     ),
                                   ),
@@ -355,9 +382,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ],
-                    
+
                     const SizedBox(height: 32),
-                    
+
                     // Recent transactions placeholder
                     Align(
                       alignment: Alignment.centerLeft,
@@ -372,7 +399,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    
+
                     // Recent transactions
                     ..._recentTransactions.map((txn) {
                       final expense = Expense.fromMap(txn);
@@ -381,7 +408,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         name: txn['category_name'] as String? ?? 'Unknown',
                         icon: txn['category_icon'] as String?,
                       );
-                      
+
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 12),
                         child: TransactionCard(
@@ -390,14 +417,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     }).toList(),
-                    
+
                     // Show empty state if no transactions
                     if (_recentTransactions.isEmpty)
                       Container(
                         padding: const EdgeInsets.all(32),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
+                          borderRadius: BorderRadius.circular(
+                            AppTheme.radiusLarge,
+                          ),
                           border: Border.all(color: Colors.grey.shade50),
                         ),
                         child: const Center(
