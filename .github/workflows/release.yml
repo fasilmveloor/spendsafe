@@ -23,7 +23,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.22.2' # Specify a tested version or use stable
+          # Removed specific version to always use latest stable, 
+          # which satisfies the Dart SDK ^3.10.4 requirement.
 
       - name: Get Dependencies
         run: flutter pub get
