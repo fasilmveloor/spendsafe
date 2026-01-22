@@ -11,6 +11,7 @@ import '../expenses/add_expense_screen.dart';
 import '../settings/settings_screen.dart';
 import '../alerts/alerts_screen.dart';
 import '../transactions/search_transaction_screen.dart';
+import '../transactions/transaction_detail_screen.dart';
 
 /// Home screen - main dashboard
 /// Displays Available to Spend, Safe Pace, and recent transactions
@@ -26,8 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   double _fts = 0.0;
   double _safePace = 0.0;
-  double _todaySpending = 0.0;
-  double _remainingToday = 0.0;
   List<Map<String, dynamic>> _recentTransactions = [];
   int _unreadAlerts = 0;
   bool _isLoading = true;
@@ -53,8 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final fts = await _moneyService.calculateFreeToSpend(now);
     final safePace = await _moneyService.calculateSafePace(now);
-    final todaySpending = await _moneyService.getTodaySpending(now);
-    final remainingToday = await _moneyService.getRemainingToday(now);
 
     // Load recent transactions (last 5)
     final db = DatabaseHelper.instance;
@@ -76,8 +73,6 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _fts = fts;
       _safePace = safePace;
-      _todaySpending = todaySpending;
-      _remainingToday = remainingToday;
       _recentTransactions = transactions;
       _unreadAlerts = unreadAlerts;
       _userName = userName ?? 'My Home';
@@ -240,151 +235,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(height: 32),
 
-                    // Today's progress bar
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(AppTheme.radiusXL),
-                        border: Border.all(color: Colors.grey.shade100),
-                      ),
-                      child: Column(
-                        children: [
-                          // Progress bar
-                          Container(
-                            height: 8,
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade100,
-                              borderRadius: BorderRadius.circular(
-                                AppTheme.radiusFull,
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                if (_todaySpending > 0)
-                                  Expanded(
-                                    flex: (_safePace > 0
-                                        ? ((_todaySpending / _safePace) * 100)
-                                              .clamp(0, 100)
-                                              .toInt()
-                                        : 100),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: _remainingToday < 0
-                                            ? AppTheme.alertAmberIcon
-                                            : AppTheme.primary,
-                                        borderRadius: BorderRadius.circular(
-                                          AppTheme.radiusFull,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                if (_safePace > 0 && _todaySpending < _safePace)
-                                  Expanded(
-                                    flex:
-                                        (100 -
-                                        ((_todaySpending / _safePace) * 100)
-                                            .clamp(0, 100)
-                                            .toInt()),
-                                    child: const SizedBox(),
-                                  ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-
-                          // Stats row
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Spent today: ${currencyFormat.format(_todaySpending).replaceAll('.00', '')}',
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppTheme.textSecondary,
-                                ),
-                              ),
-                              Text(
-                                'Remaining: ${currencyFormat.format(_remainingToday).replaceAll('.00', '')}',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                  color: _remainingToday < 0
-                                      ? AppTheme.alertAmberText
-                                      : AppTheme.textPrimary,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    // Alert banner (if exceeded pace)
-                    if (_remainingToday < 0) ...[
-                      const SizedBox(height: 24),
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppTheme.alertAmberBg,
-                          borderRadius: BorderRadius.circular(
-                            AppTheme.radiusXL,
-                          ),
-                          border: Border.all(color: Colors.amber.shade100),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(
-                                  AppTheme.radiusFull,
-                                ),
-                              ),
-                              child: const Icon(
-                                Icons.warning_rounded,
-                                color: AppTheme.alertAmberIcon,
-                                size: 20,
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Pace Alert',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w700,
-                                      color: AppTheme.alertAmberText,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    'You exceeded today\'s safe pace by ${currencyFormat.format(-_remainingToday).replaceAll('.00', '')}. '
-                                    'This reduces available spend for upcoming days.',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.amber.shade900.withOpacity(
-                                        0.8,
-                                      ),
-                                      height: 1.5,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-
-                    const SizedBox(height: 32),
-
                     // Recent transactions placeholder
                     Align(
                       alignment: Alignment.centerLeft,
@@ -411,9 +261,28 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 12),
-                        child: TransactionCard(
-                          expense: expense,
-                          category: category,
+                        child: InkWell(
+                          onTap: () async {
+                            final result = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => TransactionDetailScreen(
+                                  expense: expense,
+                                  category: category,
+                                ),
+                              ),
+                            );
+                            if (result == true) {
+                              refreshData();
+                            }
+                          },
+                          borderRadius: BorderRadius.circular(
+                            AppTheme.radiusLarge,
+                          ),
+                          child: TransactionCard(
+                            expense: expense,
+                            category: category,
+                          ),
                         ),
                       );
                     }).toList(),

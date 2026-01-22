@@ -1,4 +1,4 @@
-package com.fazlab.spendsafe
+package app.spendsafe
 
 import io.flutter.embedding.android.FlutterActivity
 

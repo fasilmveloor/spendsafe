@@ -8,13 +8,12 @@ import '../income/accounts_screen.dart';
 
 import '../fixed_expenses/fixed_expenses_screen.dart';
 import '../alerts/alerts_screen.dart';
-import '../export/export_data_screen.dart';
+import 'data_management_screen.dart';
 import '../dues/debts_and_dues_screen.dart';
 import 'about_screen.dart';
 import 'privacy_policy_screen.dart';
 import 'help_support_screen.dart';
 import 'profile_screen.dart';
-import 'backup_screen.dart';
 import '../../core/db/database_helper.dart';
 import '../onboarding/onboarding_screen.dart';
 
@@ -269,30 +268,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
             },
           ),
           const SizedBox(height: 8),
-          _buildMenuItem(
-            context,
-            icon: Icons.file_download_outlined,
-            iconColor: Colors.purple,
-            title: 'Export Data',
-            subtitle: 'CSV & Excel export',
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const ExportDataScreen(),
-                ),
-              );
-            },
-          ),
           const SizedBox(height: 8),
           _buildMenuItem(
             context,
-            icon: Icons.cloud_upload_outlined,
-            iconColor: Colors.teal,
-            title: 'Backup & Restore',
-            subtitle: 'Google Drive backup',
+            icon: Icons.save_alt,
+            iconColor: Colors.purple,
+            title: 'Data & Backup',
+            subtitle: 'Export/Import database & CSV',
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const BackupScreen()),
+                MaterialPageRoute(
+                  builder: (context) => const DataManagementScreen(),
+                ),
               );
             },
           ),
@@ -437,7 +424,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.surface,
                       borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
                       border: Border.all(color: Colors.red.shade100),
                     ),
@@ -508,9 +495,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
-          border: Border.all(color: Colors.grey.shade100),
+          border: Border.all(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? AppTheme.darkDivider
+                : Colors.grey.shade100,
+          ),
         ),
         child: Row(
           children: [

@@ -1,0 +1,9 @@
+SpendSafe helps you track your expenses, manage your accounts, and ensuring you stay within your daily safe spending pace.
+
+Features:
+- **Smart Dashboard**: Know your "Free to Spend" amount daily.
+- **Transaction Tracking**: Easy expense logging.
+- **Account Management**: Track bank accounts, wallets, and cash.
+- **Data Privacy**: All data is stored locally.
+- **Backup**: Optional backup to Google Drive or local export.
+- **No Ads**: Clean, focused interface.

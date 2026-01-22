@@ -168,7 +168,7 @@ flutter run
 2. Enable **Google Drive API**
 3. Create OAuth Client ID (Android)
 4. Package name:
-   `com.fazlab.spendsafe`
+   `app.spendsafe`
 5. Add SHA-1 fingerprint:
 
 ```bash

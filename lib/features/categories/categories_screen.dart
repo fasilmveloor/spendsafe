@@ -80,7 +80,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).bottomSheetTheme.backgroundColor,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -143,12 +143,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       decoration: BoxDecoration(
                         color: isSelected
                             ? AppTheme.primary
+                            : Theme.of(context).brightness == Brightness.dark
+                            ? AppTheme.darkInputBackground
                             : Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Icon(
                         opt['icon'] as IconData,
-                        color: isSelected ? Colors.white : Colors.grey.shade600,
+                        color: isSelected
+                            ? Colors.white
+                            : Theme.of(context).brightness == Brightness.dark
+                            ? AppTheme.darkTextSecondary
+                            : Colors.grey.shade600,
                       ),
                     ),
                   );
@@ -212,7 +218,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   void _showCategoryOptions(Category category) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).bottomSheetTheme.backgroundColor,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
